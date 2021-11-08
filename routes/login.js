@@ -44,7 +44,10 @@ passport.use('kakao-login', new kakaoStrategy({
 }, async (accessToken, refreshToken, profile, done) => { 
    Users.findOne({ id : profile.id}, (err,user)=>{
        if(err) return res.status(500).send('카카오 로그인 에러');
-       else if(user) return done(null, user);
+       else if(user) {
+            userId = profile.id;
+            return done(null, user);
+       }
        else{
            var new_user = new Users({
                id: profile.id,
@@ -62,15 +65,6 @@ router.get('/auth/kakao/callback', passport.authenticate('kakao-login', {
     failureRedirect: '/', 
 }), (req, res) => { res.redirect('/'); 
 });
-passport.serializeUser(function(user, done) { 
-    done(null, user);
-});
-
-passport.deserializeUser(function(req, user, done) { 
-    req.session.is_logined = true; 
-    console.log("Session Check :" +req.session.is_logined); 
-    done(null, user); 
-});
 
 //네이버 로그인 및 회원가입
 passport.use('naver-login', new naverStrategy({ 
@@ -81,7 +75,10 @@ passport.use('naver-login', new naverStrategy({
     //console.log(profile);
    Users.findOne({ id : profile.id}, (err,user)=>{
        if(err) return res.status(500).send('네이버 로그인 에러');
-       else if(user) return done(null, user);
+       else if(user) {
+            userId = profile.id;
+            return done(null, user);
+        }
        else{
            var new_user = new Users({
                id: profile.id,
@@ -99,6 +96,17 @@ router.get('/naverLogin', passport.authenticate('naver-login'));
 router.get('/auth/naver/callback', passport.authenticate('naver-login', {
     failureRedirect: '/', 
 }), (req, res) => { res.redirect('/'); 
+});
+
+passport.serializeUser(function(user, done) { 
+    done(null, user);
+});
+
+passport.deserializeUser(function(req, user, done) { 
+    req.session.is_logined = true; 
+    req.session.userId = userId;
+    console.log("Session Check :" + req.session.is_logined + ', Session Id: '+ req.session.userId); 
+    done(null, user); 
 });
 
 //로그아웃
