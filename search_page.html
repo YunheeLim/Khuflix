@@ -1,14 +1,14 @@
 <!DOCTYPE html>
+<!-- 본 페이지는 검색어가 없을 경우 나오는 페이지 입니다. -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KhuFlix</title>
-    <link rel="stylesheet" href="main_page_style.css">
+    <link rel="stylesheet" href="search_page.css">
 </head>
 <body>
-    
     <header>
         <nav class="navBar">
         <h1 class="title">KHUFLIX</h1>
@@ -18,42 +18,27 @@
             <button class="btn">영화</button>
             <button class="btn">NEW! 요즘 대세 콘텐츠</button>
             <button class="btn">내가 찜한 콘텐츠</button>
+            <!--검색 기능 -->
             <button class="btn_right">검색  <input type="text" placeholder="검색어를 입력하세요!" name="keyword" id="search" 
                 onKeypress="javascript:if(event.keyCode==13) {location.href='search_page.html'}"
                 onfocus="this.placeholder=''"
                 onblur="this.placeholder='검색어를 입력하세요!'"
                 autocomplete="off" /></button>
-      
         </div>
         </nav>
     </header>
-
-    <div class="main_area">
-
-        <div class="main_pic">
-        <img src="imgs/pic2.jpg" width="100%" height="80%">
-        </div>
-
-        <div class="main_text">
-        <h1>Haunted House</h1>
-        <button class="main_btn" id="play_this">Play Now</button>
-        <button class="main_btn" id="more_info">Information</button>
-        </div>
-
-        <div class="contents_display">
-            <p class="contents_text">지난 1년간 공개된 콘텐츠</p>            
-            <div class="contents_list">
-                <div class="contents">
-                    <img src="imgs/goodplace.jpeg" alt="">
-                    <p>The Good Place</p>
-                </div>
-                <div class="contents">
-                    <img src="imgs/unnatural.png" alt="">
-                    <p>Unnatural</p>
-                </div>
-            </div>
-        </div>
-
+    <div class="noReturn">
+        <h3>입력하신 검색어와 일치하는 결과가 없습니다 :(</h3>
+        <br>
+        <p> <b>추천 검색어 : </b> </p>
+        <br>
+        <p>
+            * 다른 키워드를 입력해보세요 <br>
+            * TV 프로그램이나 영화를 찾고 있으신가요? <br>
+            * 영화 제목, TV 프로그램 제목, 또는 배우나 감독의 이름으로 검색해 보세요. <br>
+            * 코미디, 로맨스, 스포츠 또는 드라마와 같은 장르명으로 검색해보세요. 
+        </p>
     </div>
+
 </body>
 </html>
