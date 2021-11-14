@@ -1,0 +1,38 @@
+.navBar{
+    color:red;
+
+}
+
+body{
+    width: 100%;
+    font-family: 'roboto',sans-serif;
+}
+
+.content_area
+{
+    width:450px;
+    height:420px;
+    position:absolute;
+    left:50%;
+    top:50%;
+    margin-left:-220px;
+    margin-top:-170px;
+    font-family: 'Roboto', sans-serif;
+}
+
+#submit_btn{
+    color:white;
+    background-color: red;
+    border: transparent;
+    height: 36px;
+    width:255px;
+
+}
+#pwd_place{
+    width:250px;
+    height:37px;
+}
+#email_place{
+    width:250px;
+    height:37px;
+}

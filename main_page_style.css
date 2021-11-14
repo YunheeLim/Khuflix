@@ -42,6 +42,23 @@ body{
     size: 14px;
 }
 
+#search{
+    width: 150px;
+    border:transparent;
+    background-color: black;
+    color:whitesmoke;
+   
+}
+
+#search:focus{
+    width: 150px;
+    border:transparent;
+    background-color: black;
+    color:whitesmoke;
+    outline:none;
+}
+
+
 .main_text{
     color:whitesmoke;
     font-size: larger;

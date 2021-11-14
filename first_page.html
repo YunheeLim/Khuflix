@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="first_page_style.css">
 </head>
 <body>
+    
     <header class="background">
         <div class="top">
             <img src="imgs/KHUFLIX.PNG" alt="Khuflix">
@@ -15,15 +16,15 @@
                 <option value="/kr/">한국어</option>
                 <option value="/kr-en/">English</option>
             </select>
-            <span style="background: #E50914; padding: 7px 17px;">로그인</span>
+            <span style="background: #E50914; padding: 7px 17px;" onclick="location.href='login_page.html'">로그인</span>
         </div>
         <div class="main">
             <h1 class="title">영화, TV 프로그램을 무제한으로.</h1>
             <h2 class="subtitle">다양한 디바이스에서 시청하세요. 언제든 해지하실 수 있습니다.</h2>
             <h3 class="minititle">시청할 준비가 되셨나요? 멤버십을 등록하거나 재시작하려면 이메일 주소를 입력하세요.</h3>
             <div class="box">
-                <input type="text" placeholder="이메일 주소" style="float: left;">
-                <button onclick="location.href='login_page.html'">시작하기 ></button>
+                <input type="text" placeholder="이메일 주소" style="float: left;" id="email_input" name="email_data"/>
+                <button type="submit" name="start_btn" id="start_button" onclick="location.href='login_process.html'">시작하기</button>
             </div>
         </div>
         <!-- <div class="card1"></div>
