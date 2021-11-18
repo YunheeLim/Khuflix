@@ -1,10 +1,37 @@
-!DOCTYPE html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8"/>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KhuFlix</title>
+    <link rel="stylesheet" href="../../public/stylesheets/video/search_page_style.css">
 </head>
 <body>
-    <h1>Search page</h1>
+    <header>
+        <nav class="navBar">
+        <h1 class="title" onclick="location.href='/main'">KHUFLIX</h1>
+        <div class="In_navbar">
+            <button class="btn">홈</button>
+            <button class="btn">TV 프로그램</button>
+            <button class="btn">영화</button>
+            <button class="btn">NEW! 요즘 대세 콘텐츠</button>
+            <button class="btn">내가 찜한 콘텐츠</button>
+            <!--검색 기능 -->
+            <form action="/search" method="post">
+            <div class="btn_right">검색  <input type="text" placeholder="검색어를 입력하세요!" name="keyword" id="search" 
+                onKeypress="javascript:if(event.keyCode==13) {location.href='search_page.html'}"
+                onfocus="this.placeholder=''"
+                onblur="this.placeholder='검색어를 입력하세요!'"
+                autocomplete="off" /></div>
+            </form>
+        </div>
+        </nav>
+    </header>
+    <%if(result===true){%>
+        <% include search_result_page %>
+    <%}else if(result===false){%>
+        <% include search_fail_page %>
+    <%}%>
 </body>
 </html>

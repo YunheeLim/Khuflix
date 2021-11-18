@@ -1,21 +1,7 @@
-/* .bgbox{
-    background: url(background.jpg);
-    background-size: cover;
+*{
+    margin: 0;
+    padding: 0;
 }
-.bgbox::before{
-    content: "";
-    opacity: 0.5;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
-    background-color: #000;
-} */
-/* body{
-    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", 
-  Helvetica, Arial, "Lucida Grande", sans-serif;
-} */
 
 .background{
     width: 100%;
