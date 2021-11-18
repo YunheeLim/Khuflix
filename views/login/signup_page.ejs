@@ -1,12 +1,33 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Khuflix</title>
+    <link rel="stylesheet" href="../../public/stylesheets/login/signup_page_style.css">
 </head>
 <body>
-    <h1>회원가입 페이지</h1>
+    <header>
+        <nav class="navBar">
+        <h1 class="title">KHUFLIX</h1>
+        <hr style="border: solid 1px gainsboro;">
+        </nav>
+    </header>
+    <div class="content_area">
+        <div>
+        <form action="/signup" method="post">
+            <h1>회원님, 반갑습니다.<br>쿠플릭스 가입을 도와드릴께요!</h1>
+            <h2> 비밀번호를 입력하면 회원가입이 완료됩니다!</h2>
+            <%if(remember_Id){%>
+                <h3> 이메일 주소<br> <input type="email" placeholder=<%=remember_Id%> name="id" id="email_place"/> </h3>
+            <%}else{%>
+                <h3> 이메일 주소<br> <input type="email" placeholder="이메일을 입력하세요" name="id" id="email_place"/> </h3>
+            <%}%> 
+            <h3> 비밀번호 <br> <input type="password" placeholder="비밀번호를 입력하세요" name="pw" id="pwd_place"/> </h3>
+            <button type="submit" value="가입하기" id="submit_btn">가입하기</button>
+        </form>
+        </div>
+    </div>
 </body>
 </html>

@@ -11,7 +11,7 @@
 <body>
     <header class="background">
         <div class="logo-part">
-            <img src="../../public/images/KHUFLIX.PNG" alt="Khuflix">
+            <img src="../../public/images/KHUFLIX.PNG" alt="Khuflix" onclick="location.href='/first'">
         </div>
         <div class="login-part">
             <div class=login-space>
@@ -19,7 +19,11 @@
                 <div class=login-main>
                     <form action="/login" method="post">
                     <div class="idbox">
-                        <input id="id" name="id" type="text" <%="placeholder="%><%=text_for_placeholder%>> <!--placeholder에 전달받은 id(email)를 할당-->
+                        <%if(remember_Id){%>
+                            <input id="id" name="id" type="email" placeholder=<%=remember_Id%>>
+                        <%}else{%>
+                            <input id="id" name="id" type="email" placeholder="이메일 주소">
+                        <%}%> 
                     </div>
                     <div class="pwbox">
                         <input id="pw" name="pw" type="password" placeholder="비밀번호">
@@ -46,7 +50,7 @@
             </div>
             <div class="signup">
                 Khuflix 회원이 아닌가요?
-                <a id="b1" href="">지금 가입하세요</a>
+                <a id="b1" href="/signup">지금 가입하세요</a>
             </div>
             <div class="robot">
                 이 페이지는 Google reCAPTCHA의 보호를 받아 사용자가 로봇이 아님을 확인합니다.

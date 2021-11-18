@@ -8,7 +8,7 @@ var facebookStrategy = require('passport-facebook').Strategy;
 var config = require('../config/secret');
 var model = require('../models');//사용자 모델 스키마 가져오기
 var Users = model.Users; //사용자 객체 생성을 위한 오브젝트 생성
-var text_for_placeholder="이메일 주소 또는 전화번호"; // first_page에서 시작하기 버튼 누르지 않고 바로 로그인 버튼 누를 경우 문구 미리 지정
+var remember_Id; //입력받은 id(이메일)를 HTML placeholder로 사용하기 위함
 
 //첫페이지
 //first_page 렌더링
@@ -17,10 +17,12 @@ router.get('/first', function(req, res){
 })
 // 이메일 주소(전화번호) 데이터 저장
 router.post('/first', function(req, res){
-    if(!req.body.inputId) text_for_placeholder = "이메일 주소 또는 전화번호"; //first_page에서 이메일을 입력하지 않았을 경우
-    else text_for_placeholder = req.body.inputId; //first_page에서 이메일을 입력했을 경우
-    res.redirect('/login');
-})
+    remember_Id = req.body.id;
+    Users.findOne({ id: req.body.id}, (err, user) =>{
+        if(user) res.redirect('/login'); //회원일 경우 로그인 페이지로
+        else res.redirect('/signup'); //회원이 아닐 경우 회원가입 페이지로
+    });  
+});
 
 //메인페이지
 router.get('/main', function(req, res){
@@ -28,14 +30,19 @@ router.get('/main', function(req, res){
 });
 
 //회원가입
-//signup_page 렌더링(미완성)
+//signup_page 렌더링
 router.get('/signup', function(req, res){
-    res.render('login/signup_page');
+    res.render('login/signup_page', {remember_Id:remember_Id});
 })
 
-//아이디,비밀번호 데이터 저장(미완성)
+//아이디,비밀번호 데이터 저장
 router.post('/signup', function(req, res){
-    var new_user = new Users(req.body); //새로운 회원 저장을 위한 객체생성
+    remember_Id = req.body.id;
+    var userId = req.body.id;
+    var userName = userId.split('@')[0]; //이메일 앞부분을 사용자 이름으로 지정
+    var userPw = req.body.pw;
+    console.log(userId, userName, userPw);
+    var new_user = new Users({name:userName,id:userId,pw:userPw}); //새로운 회원 저장을 위한 객체생성
     new_user.save(function(err){ //새로운 회원 데이터베이스에 저장
         if(err) res.status(500).send('회원가입 에러');
         else res.redirect('/login'); //회원가입 성공시 로그인페이지로
@@ -45,7 +52,7 @@ router.post('/signup', function(req, res){
 //일반 로그인
 //login_page 렌더링
 router.get('/login',function(req, res){
-    res.render('login/login_page', {text_for_placeholder:text_for_placeholder}); //first_page에서 입력받은 id(email)를 login_page에 전달
+    res.render('login/login_page', {remember_Id:remember_Id}); //first_page에서 입력받은 id(email)를 login_page에 전달
 })
 
 //아이디, 비밀번호 데이터 받아서 일치하는지 체크
@@ -62,19 +69,19 @@ router.post('/login', function(req,res) {
                     req.session.save((err)=>{if(err) console.log("세션 저장 실패")}); //일반 로그인 세션저장
                     res.redirect('/main'); //메인페이지로
                 }else{ //비밀번호가 틀렸을 경우
-                    res.redirect('/loginFail'); //비밀번호 틀렸다는 메시지 알려주는 페이지로
+                    res.redirect('/loginFail'); //로그인 실패 페이지로
                 }
             });
         } 
-		else { //회원이 아닐 경우 회원가입 페이지로
-            res.redirect('/signup');
+		else { //아이디가 틀렸을 경우 또는 회원이 아닐 경우 로그인 실패 페이지로
+            res.redirect('/loginFail');
         }
 	});
 });
 
-//비밀번호 오류로 인한 로그인 실패
+//로그인 실패
 router.get('/loginFail', function(req, res){
-    res.render('login/login_fail'); //(페이지 미완성)
+    res.render('login/login_fail_page');
 });
 
 
@@ -83,7 +90,8 @@ passport.use('kakao-login', new kakaoStrategy({
     clientID: config.kakao.clientID, 
     callbackURL: config.kakao.callbackURL, 
 }, async (accessToken, refreshToken, profile, done) => { 
-   Users.findOne({ id : profile.id}, (err,user)=>{
+    console.log(profile);
+    Users.findOne({ id : profile.id}, (err,user)=>{
        if(err) res.status(500).send('카카오 로그인 에러');
        else if(user) { //이미 회원일 경우
             return done(null, user);
@@ -112,22 +120,23 @@ passport.use('naver-login', new naverStrategy({
     clientSecret: config.naver.clientSecret,
     callbackURL: config.naver.callbackURL, 
 }, async (accessToken, refreshToken, profile, done) => { 
-   Users.findOne({ id : profile.id}, (err,user)=>{
+    //console.log(profile);
+    var userName = profile.emails[0].value.split('@')[0];
+    Users.findOne({ id : profile.emails[0].value}, (err,user)=>{
        if(err) res.status(500).send('네이버 로그인 에러');
        else if(user) {
             return done(null, user);
         }
        else{
            var new_user = new Users({
-               id: profile.id,
-               name: profile.displayName //문제: displayName을 불러오지 못하고 undefined가 됨(좀 더 알아본 후 해결하기)
+               id: profile.emails[0].value,
+               name: userName 
            });
            new_user.save((user)=>{
                return done(null, user);
            });
        }
    });
-
 }));
 
 router.get('/naverLogin', passport.authenticate('naver-login')); 
@@ -140,10 +149,9 @@ router.get('/auth/naver/callback', passport.authenticate('naver-login', {
 passport.use('facebook-login', new facebookStrategy({ 
     clientID: config.facebook.clientID, 
     clientSecret: config.facebook.clientSecret,
-    callbackURL: config.facebook.callbackURL
+    callbackURL: config.facebook.callbackURL,
 }, async (accessToken, refreshToken, profile, done) => { 
-   // console.log(profile);
-   Users.findOne({ id : profile.id}, (err,user)=>{
+    Users.findOne({ id : profile.id}, (err,user)=>{
        if(err) res.status(500).send('페이스북 로그인 에러');
        else if(user) {
             return done(null, user);

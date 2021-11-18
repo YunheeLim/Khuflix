@@ -1,3 +1,4 @@
+
 .background{
   height: 100vh;
   background-image: url('../../images/background.jpg');
@@ -36,6 +37,17 @@ select{
   background: #00000066;
 }
 
+button{
+  width: 82px;
+  height: 35px;
+  font-size: 16px;
+  background: #E50914;
+  position: relative;
+  z-index: 2;
+  color: #FFFFFF;
+  border-radius: 3px;
+}
+
 span{
   position: relative;
   z-index: 2;
@@ -53,6 +65,7 @@ h1{
   font-size: 50px;
   color: white;
   text-align: center;
+  margin: 10px 0px 20px 0px;
 }
 
 h2{
@@ -62,6 +75,7 @@ h2{
   font-weight: 500;
   color: white;
   text-align: center;
+  margin: 10px 0px;
 }
 
 h3{
@@ -71,6 +85,7 @@ h3{
   font-weight: 500;
   color: white;
   text-align: center;
+  margin: 10px 0px 40px 0px;
 }
 
 .box{
@@ -89,7 +104,7 @@ input{
   font-size: 16px;
 }
 
-button{
+#start{
   border:none;
   border-radius: 2px;
   position: relative;
@@ -97,18 +112,7 @@ button{
   color: #FFFFFF;
   background: #E50914;
   padding: 0px 26px;
-  height: 60px;
-  font-size: 26px;
-}
-
-.submit_button{
-  border:none;
-  border-radius: 2px;
-  position: relative;
-  z-index: 2;
-  color: #FFFFFF;
-  background: #E50914;
-  padding: 0px 26px;
+  width: 200px;
   height: 60px;
   font-size: 26px;
 }
