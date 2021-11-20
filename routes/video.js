@@ -2,15 +2,18 @@ var express = require('express');
 var router = express.Router();
 var model = require('../models');
 var Videos = model.Videos;
+var target_video; //재생하려는 비디오
 
+//search_page 렌더링
 router.get('/search', function(req, res){
-    res.render('video/search_page',{result:null});
+    res.render('video/search_page',{result:null}); //result값: ejs(html)파일에 전달
 })
 
+//동영상 검색
 router.post('/search', function(req, res){
     var keyword = req.body.keyword;
     console.log('keyword:' + keyword);
-    if(keyword =='') res.render('video/search_page', {result:false});
+    if(keyword =='') res.render('video/search_page', {result:false}); //검색어 없이 검색했을 경우
     else{
     Videos.findOne({title:keyword}, (err, video)=>{
         if (err) res.status(500).send('검색 에러');
@@ -31,5 +34,23 @@ router.post('/search', function(req, res){
         }
     });}
 });
+
+//test data
+Videos.findOne({title:'연모'},(err,video)=>{
+   console.log(video._doc);
+    target_video = video._doc;
+});
+
+//상세페이지
+router.get('/detail', function(req, res){
+    console.log(target_video);
+    res.render('video/detail_page', {target_video:target_video});
+});
+
+/*
+router.get('/detail_test', function(req, res){
+    res.render('video/detail_page_test');
+});*/
+
 
 module.exports = router;

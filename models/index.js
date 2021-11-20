@@ -9,14 +9,15 @@ var UserSchema = new mongoose.Schema({
 
 //동영상 스키마(미완성)
 var VideoSchema = new mongoose.Schema({
-    title: {type: String},
-    content: {type: String},
-    cast:{type: String},
-    genre:{type:String},
-    feature:{type:String},
-    episode: {type:Number},
-    ost:{type:String}
-})
+    title: String,
+    src: String,
+    content: String,
+    cast: String,
+    feature: String,
+    genre: String,
+    ost: [{song: String, singer: String, ost_src: String}],
+    episode: [{time: Number, epi_content: String, epi_src: String}]
+});
 
 exports.Users = mongoose.model('users', UserSchema);
 exports.Videos = mongoose.model('videos', VideoSchema);

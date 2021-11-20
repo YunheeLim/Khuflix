@@ -8,7 +8,7 @@ var facebookStrategy = require('passport-facebook').Strategy;
 var config = require('../config/secret');
 var model = require('../models');//사용자 모델 스키마 가져오기
 var Users = model.Users; //사용자 객체 생성을 위한 오브젝트 생성
-var remember_Id; //입력받은 id(이메일)를 HTML placeholder로 사용하기 위함
+var remember_Id; //입력받은 id(이메일)를 ejs(html)파일의 placeholder로 사용하기 위함
 
 //첫페이지
 //first_page 렌더링
