@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HTML Video Player</title>
+  <link rel="stylesheet" href="../../public/stylesheets/video/original_player_style.css">
+</head>
+<body>
+    
+
+    <div class="controller">
+        <a href="/main"><img src="../../public/images/back.png" height="50px" width="50px"></a>
+     <video class="video_view viewer" src="../../public/videos/<%=title%>.mp4"></video>
+
+     <div class="play_controller">
+       <div class="progress">
+        <div class="progress_bar"></div>
+       </div>
+
+       <button class="toggleBtn toggle" title="Toggle Play">►</button>
+       <button data-skip="-10" class="toggleBtn">« 10s</button>
+       <button data-skip="10" class="toggleBtn">10s »</button>
+       <div class="btn">
+        <time id="time-elapsed">00:00</time>
+        <span>  /  </span>
+        <time id="duration">00:00</time>
+      </div>
+      <input type="range" name="volume" class="volume_ctr" min="0" max="1" step="0.03" value="1">
+      <button class="size" onclick="openFullScreen()">full screen</button>
+   </div>
+   <script src="../../public/javascripts/video/videoJs.js"></script>
+</body>
+</html>

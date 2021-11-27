@@ -7,8 +7,10 @@ var naverStrategy = require('passport-naver').Strategy;
 var facebookStrategy = require('passport-facebook').Strategy;
 var config = require('../config/secret');
 var model = require('../models');//사용자 모델 스키마 가져오기
-var Users = model.Users; //사용자 객체 생성을 위한 오브젝트 생성
-var remember_Id; //입력받은 id(이메일)를 ejs(html)파일의 placeholder로 사용하기 위함
+const { session } = require('passport');
+var Users = model.Users; //사용자 객체 생성을 위한 오브젝트
+var Videos = model.Videos; //비디오 객체 생성을 위한 오브젝트
+var remember_Id; //입력받은 id(이메일)를 frontEnd의 placeholder로 사용하기 위함
 
 //첫페이지
 //first_page 렌더링
@@ -26,7 +28,14 @@ router.post('/first', function(req, res){
 
 //메인페이지
 router.get('/main', function(req, res){
-    res.render('login/main_page');
+    if(req.session.is_logined==undefined || req.session.is_logined==undefined){//로그인 안하면 접근 못하도록 막기
+         res.send('로그인 해주세요');
+    }else{
+        Users.findById(req.session._id, 'name history',(err,user)=>{//사용자 이름과 시청기록만 얻기
+            if(err) res.send('메인페이지 에러');
+            res.render('login/main_page',{user:user}); //얻은 정보를 main page에 전달
+        });
+    }
 });
 
 //회원가입
@@ -64,9 +73,10 @@ router.post('/login', function(req,res) {
             Users.findOne({ id: req.body.id, pw: req.body.pw }, (err,user)=>{
                 if(user){ //비밀번호가 올바를 경우
                     req.session.is_logined = true;
-                    req.session.userId = req.body.id;
-                    req.session.userName = req.body.name;
-                    req.session.save((err)=>{if(err) console.log("세션 저장 실패")}); //일반 로그인 세션저장
+                    req.session._id = user._id.toString()
+                    req.session.userId = user.id;
+                    req.session.userName = user.id.split('@')[0];
+                    req.session.save((err)=>{if(err) console.log("세션 저장 실패");}); //일반 로그인 세션저장
                     res.redirect('/main'); //메인페이지로
                 }else{ //비밀번호가 틀렸을 경우
                     res.redirect('/loginFail'); //로그인 실패 페이지로
@@ -183,15 +193,17 @@ passport.serializeUser(function(user, done) {
 
 passport.deserializeUser(function(req, user, done) { 
     req.session.is_logined = true;
+    req.session._id = user._id.toString();
     req.session.userId = user.id;
     req.session.userName= user.name;
-	//console.log("Session Check :" +req.session.userId, req.session.userName);
+	//console.log(req.session);
     done(null, user); 
 });
 
 //로그아웃
 router.get('/logout', function(req, res){
     if(req.session.is_logined){
+        req.sessionlis_logined = false;
         req.session.destroy((err)=>{ //세션제거
             if(err) throw err;
             res.redirect('/first'); //로그아웃 성공 시 첫페이지로
@@ -208,6 +220,7 @@ router.delete('/remove', function(req, res){
             if(err){
                 res.status(500).send('탈퇴 에러');
             }else{
+                req.sessionlis_logined = false;
                 req.session.destroy((err)=>{ //세션제거
                     if(err) throw err;
                     res.redirect('/first'); //탈퇴완료 시 첫페이지로

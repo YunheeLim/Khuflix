@@ -46,6 +46,19 @@
                     <img src="../../public/images/unnatural.png" alt="">
                     <p>Unnatural</p>
                 </div>
+                <div class="contents">
+                    <img class="btn-open-popup" src="../../public/images/drama1.jpg" alt="">
+                    <p>슬기로운 의사생활</p>
+                </div>
+            </div>
+            <p class="contents_text"><b><%=user.name%></b>님이 시청 중인 콘텐츠</p>
+            <div class="contents_list">
+                <% user.history.forEach((video)=>{%>
+                <div class="contents">
+                    <img src="../../public/images/thumb/<%=video.title%><%=video.episode%>_thumb.jpg" alt="" onclick="location.href='/streaming/<%=video.title%>/<%=video.episode%>'">
+                    <p><%=video.title%> <%=video.episode%>화</p>
+                </div>  
+                <%});%>
             </div>
         </div>
 
