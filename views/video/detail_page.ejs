@@ -10,12 +10,16 @@
 <body>
     <div class="background">
         <div class="playpart">
-            <div style="position: relative;">
-                <iframe width="850" height="479" src=<%=target_video.src%> 
-                title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; 
-                encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <div style="position: relative;">   
+                <%if(target_video.type == 'original'){%> <!--original동영상이면 이미지 띄워주기-->
+                    <img class="video" src="../../public/images/thumb/<%=target_video.title%>_thumb.jpg"></img>
+                <%}else if(target_video.type == 'youtube'){%> <!--youtube동영상이라면 티저영상 띄워주기-->
+                    <iframe width="850" height="479" src=<%=target_video.src%> 
+                        title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; 
+                        encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <%}%>
                 <div style="position: absolute; top: 240px; left: 50px;">
-                    <img class="logo" src="../../public/images/detail/logo.png"></img>
+                    <img class="logo" src="../../public/images/logo/<%=target_video.title%>_logo.png"></img>
                     <button class="play"><i class="fas fa-play playing"></i> 재생</button>
                     <button class="circle"><i class="fas fa-check"></i></button>
                     <button class="circle"><i class="far fa-thumbs-up"></i></button>
@@ -23,7 +27,6 @@
                     <button class="circle" id="mute"><i class="fas fa-volume-mute"></i></button>
                 </div>
             </div>
-            <!-- <img class="video" src="video.jpg"></img> -->
         </div>
         <div class="infopart">
             <div class="left">
@@ -120,13 +123,13 @@
                 <% target_video.episode.forEach((episode)=>{%>
                 <div class="epi">
                     <div class="e_number"><%=episode.__index + 1%></div>
-                    <div class="thumbnail"><img class="thumb" src="../../public/images/detail/1-2.jpg"></div>
+                    <div class="thumbnail"><img class="thumb" src="../../public/images/thumb/<%=target_video.title%><%=episode.__index+1%>_thumb.jpg"></div>
                     <div class="text">
                         <div class="e_title">
                             <div class="story"><%=episode.__index + 1%>화</div>
                             <div class="time"><%=episode.time%>분</div>
                         </div>
-                        <div class="summary"><p><%=episode.epi_content%></p></div>
+                        <button class="summary" onclick="location.href='/streaming/<%=target_video.title%>/<%=episode.__index + 1%>'"><p><%=episode.epi_content%></p></button>
                     </div>
                     <div class="blank"></div>
                 </div>
