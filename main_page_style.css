@@ -1,0 +1,115 @@
+*{
+    margin : 0;
+    padding :0;
+    box-sizing: border-box;
+}
+
+body{
+    width: 100%;
+    position: relative;
+    background:black;
+    font-family: 'roboto',sans-serif;
+}
+.navBar{
+    position:fixed;
+    align-items: center;
+    display:flex;
+    background-color: black;
+    width: 100%;
+    height: 10%;
+}
+
+.title{
+    color: red;
+    float:left;
+    margin-right:30px;
+    margin-left:4%;
+}
+
+.btn{
+    background-color: black;
+    color:whitesmoke;
+    border: 0cm;
+    float: left;
+    margin-left:7px;
+    size: 14px;
+}
+.btn_right{
+    background-color: black;
+    color:whitesmoke;
+    border: 0cm;
+    float: right;
+    margin-left:7px;
+    size: 14px;
+}
+
+.main_text{
+    color:whitesmoke;
+    font-size: larger;
+    position:absolute;
+    top: 45%;
+    left:4%;
+}
+.main_btn{
+    color:black;
+    size:20px;
+    border:transparent;
+}
+#play_this{
+    height:30px;
+    width:100px;
+    border-radius: 8%;
+}
+#more_info{
+    height:30px;
+    width:100px;
+    background-color: gainsboro;
+    border-radius: 8%;
+}
+.contents_display{
+    width:100%;
+    height:250px;
+    top:80%;
+    position:absolute;
+    left:4%;
+}
+
+.contents_text {
+    color:whitesmoke;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.contents_list{
+    display: flex;
+    width: 100%;
+    height: 200px;
+    align-items: center;
+    scroll-behavior: smooth;
+}
+
+.contents_list::-webkit-scrollbar{
+    display:hidden;
+}
+
+.contents{
+    flex: 0 0 auto;
+    width: 25%;
+    height: 200px;
+    text-align: center;
+    margin-right: 10px;
+    cursor: pointer;
+    position: relative;
+}
+
+.contents img{
+    width: 95%;
+    height: 160px;
+    object-fit: fill;
+}
+
+.contents p{
+    color:white;
+    font-size: 15px;
+}
+
