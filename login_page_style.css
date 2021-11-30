@@ -1,0 +1,169 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.background{
+    width: 100%;
+    background: url("imgs/background.jpg");
+}
+
+.background::after{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background: rgba(0, 0, 0, 0.48)
+}
+
+img{
+    position: relative;
+    z-index: 2;
+    height: 50px;
+    width: auto;
+    padding: 8px;
+}
+
+.login-part{
+    position: relative;
+    z-index: 2;
+    width: 314px;
+    background: #000000BF;
+    padding: 60px 68px 40px;
+    margin:0 auto;
+}
+
+h1{
+    text-align: left;
+    color: white;
+    margin: 0px 0px 28px;
+}
+
+.idbox{
+    padding: 0px 0px 16px;
+}
+
+#id{
+    border:none;
+    border-radius: 4px;
+    font-size: 16px;
+    color: #8c8c8c;
+    background: #333333;
+    width: 314px;
+    height: 50px;
+}
+
+.pwbox{
+    padding: 0px 0px 16px;
+}
+
+#pw{
+    border:none;
+    border-radius: 4px;
+    font-size: 16px;
+    color: #8c8c8c;
+    background: #333333;
+    width: 314px;
+    height: 50px;
+}
+
+.login{
+    font-size: 16px;
+    background: #e50914;
+    border:none;
+    border-radius: 4px;
+    margin: 24px 0px 12px;
+    padding: 16px;
+    width: 314px;
+    height: 48px;
+    color: white;
+}
+
+.save{
+    font-size: 13px;
+    color: #b3b3b3;
+    width: 403.53px;
+    height: 24.6px;
+    padding: 0px 0px 8px 0px;
+}
+
+#to_netflix{
+    font-size: 13px;
+    color: whitesmoke;
+    font:bold;
+    width: 403.53px;
+    height: 24.6px;
+    padding: 0px 0px 8px 0px;
+    cursor: pointer;
+}
+#to_netflix:hover{
+    text-decoration: underline;
+}
+
+
+label{
+    width: 383.53px;
+    height: 19.2px;
+}
+
+a{
+    color: #b3b3b3;
+    width: 127.85px;
+    height: 19.6px;
+}
+
+.icon{
+    text-decoration-line : none;
+}
+
+.face{
+    height: 20px;
+    width: auto; 
+    font-size: 13px;
+    color: #737373;
+}
+
+.social{
+    height: 25px;
+    width: auto;
+    padding: 5px;
+}
+
+.signup{
+    font-size: 16px;
+    color: #737373;
+}
+
+#b1{
+    font-size: 16px;
+    color: #FFFFFF;
+    text-decoration-line : none;
+}
+
+#b2{
+    font-size: 13px;
+    color: #0071EB;
+    text-decoration: none;
+}
+
+.robot{
+    margin: 13px 0px;
+    font-size: 13px;
+    color: #8c8c8c;
+}
+
+.info-part{
+    position: relative;
+    z-index: 2;
+    color: #757575;
+    background: #000000BF;
+    padding: 30px 0px;
+}
+
+.info{
+    font-size: 12px;
+    color: #808080;
+}
