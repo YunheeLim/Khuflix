@@ -3,7 +3,10 @@
     padding :0;
     box-sizing: border-box;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> e758bf22f180331c0866bcbfa213055e0e188d0e
 body{
     width: 100%;
     position: relative;
@@ -43,6 +46,26 @@ body{
     size: 14px;
 }
 
+<<<<<<< HEAD
+=======
+#search{
+    width: 150px;
+    border:transparent;
+    background-color: black;
+    color:whitesmoke;
+   
+}
+
+#search:focus{
+    width: 150px;
+    border:transparent;
+    background-color: black;
+    color:whitesmoke;
+    outline:none;
+}
+
+
+>>>>>>> e758bf22f180331c0866bcbfa213055e0e188d0e
 .main_text{
     color:whitesmoke;
     font-size: larger;

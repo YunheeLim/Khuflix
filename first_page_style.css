@@ -1,9 +1,12 @@
+<<<<<<< HEAD
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+=======
+>>>>>>> e758bf22f180331c0866bcbfa213055e0e188d0e
 .background{
     height: 100vh;
     background-image: url('imgs/background.jpg');
@@ -42,6 +45,7 @@ select{
     background: #00000066;
 }
 
+<<<<<<< HEAD
 button{
     width: 82px;
     height: 35px;
@@ -53,6 +57,8 @@ button{
     border-radius: 3px;
 }
 
+=======
+>>>>>>> e758bf22f180331c0866bcbfa213055e0e188d0e
 span{
     position: relative;
     z-index: 2;
@@ -70,7 +76,10 @@ h1{
     font-size: 50px;
     color: white;
     text-align: center;
+<<<<<<< HEAD
     margin: 10px 0px 20px 0px;
+=======
+>>>>>>> e758bf22f180331c0866bcbfa213055e0e188d0e
 }
 
 h2{
@@ -80,7 +89,10 @@ h2{
     font-weight: 500;
     color: white;
     text-align: center;
+<<<<<<< HEAD
     margin: 10px 0px;
+=======
+>>>>>>> e758bf22f180331c0866bcbfa213055e0e188d0e
 }
 
 h3{
@@ -90,7 +102,10 @@ h3{
     font-weight: 500;
     color: white;
     text-align: center;
+<<<<<<< HEAD
     margin: 10px 0px 40px 0px;
+=======
+>>>>>>> e758bf22f180331c0866bcbfa213055e0e188d0e
 }
 
 .box{
@@ -109,7 +124,11 @@ input{
     font-size: 16px;
 }
 
+<<<<<<< HEAD
 #start{
+=======
+button{
+>>>>>>> e758bf22f180331c0866bcbfa213055e0e188d0e
     border:none;
     border-radius: 2px;
     position: relative;
@@ -117,7 +136,10 @@ input{
     color: #FFFFFF;
     background: #E50914;
     padding: 0px 26px;
+<<<<<<< HEAD
     width: 200px;
+=======
+>>>>>>> e758bf22f180331c0866bcbfa213055e0e188d0e
     height: 60px;
     font-size: 26px;
 }
