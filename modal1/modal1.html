@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>slide</title>
+    <link rel="stylesheet" href="modal1.css">
+    <script src="https://kit.fontawesome.com/11643b24f4.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="section">
+        <input type="radio" name="slide" id="slide01" checked>
+        <input type="radio" name="slide" id="slide02">
+        <input type="radio" name="slide" id="slide03">
+
+        <div class="slidewrap">
+            <ul class="slidelist">
+                <li>
+                    <a>
+                        <!-- <label for="slide03" class="left"></label> -->
+                        <div class="image">
+                            <img class="i" src="imgs/squid.png" onmouseenter="zoomIn(event)" onmouseleave="zoomOut(event)">
+                        </div>
+                        <div class="image">
+                            <img class="i btn-open-popup" src="imgs/drama1.png" onmouseenter="zoomIn(event)" onmouseleave="zoomOut(event)">
+                            <div class="modal">
+                                <div class="container">
+                                    <section class="item item-a">
+                                        <img class="pre" src="imgs/preview.png" alt="">
+                                    </section>
+                                    <section class="item item-b">
+                                        <div class="container2">
+                                            <div class="buttons">
+                                                <button class="circle play"><i class="fas fa-play"></i></button>
+                                                <button class="circle"><i class="fas fa-check"></i></button>
+                                                <button class="circle"><i class="far fa-thumbs-up"></i></button>
+                                                <button class="circle down"><i class="far fa-thumbs-down"></i></button>
+                                                <button class="circle etc"><i class="fas fa-chevron-down"></i></button>
+                                            </div>
+                                            <div class="data">
+                                                <p>
+                                                    <span style="color:#46D369; font-weight:bold;">92% 일치 </span>
+                                                    <span style="color: #FFFFFF; font-weight:normal">시즌 2개</span>
+                                                </p>
+                                            </div>
+                                            <div class="genre">
+                                                <p>힐링 <i class="fas fa-circle"></i>
+                                                    가슴 뭉클 <i class="fas fa-circle"></i>
+                                                    드라마 장르
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="image"><img class="i" src="imgs/hell.png" onmouseenter="zoomIn(event)" onmouseleave="zoomOut(event)"></div>
+                        <div class="image"><img class="i" src="imgs/vin.png" onmouseenter="zoomIn(event)" onmouseleave="zoomOut(event)"></div>
+                        <div class="image"><img class="i" src="imgs/hotel.png" onmouseenter="zoomIn(event)" onmouseleave="zoomOut(event)"></div>
+                        <label for="slide02" class="right"></label>
+                    </a>
+                </li>
+                <li>
+                    <a>
+                        <label for="slide01" class="left"></label>
+                        <img class="i" src="imgs/hell.png">
+                        <img class="i" src="imgs/vin.png">
+                        <img class="i" src="imgs/hotel.png">
+                        <img class="i" src="imgs/squid.png">
+                        <img class="i" src="imgs/drama1.png">
+                        <label for="slide03" class="right"></label>
+                    </a>
+                </li>
+                <li>
+                    <a>
+                        <label for="slide02" class="left"></label>
+                        <img class="i" src="imgs/vin.png">
+                        <img class="i" src="imgs/hotel.png">
+                        <img class="i" src="imgs/drama1.png">
+                        <img class="i" src="imgs/hell.png">
+                        <img class="i" src="imgs/squid.png">
+                        <!-- <label for="slide01" class="right"></label> -->
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        const modal = document.querySelector('.modal');
+        const preview = document.querySelector('.btn-open-popup');
+
+        preview.addEventListener('mouseover', () => {
+            modal.style.display = 'block';
+            //body.style.overflow = 'hidden';
+            //modal.style.zIndex = 2;
+        });
+        preview.addEventListener('mouseout', () => {
+            modal.style.display = 'none';
+        });
+
+        modal.addEventListener('mouseover', () => {
+            modal.style.display = 'block';
+        });
+        modal.addEventListener('mouseout', () => {
+            modal.style.display = 'none';
+        });
+        
+        function zoomIn(event) {
+            event.target.style.transform = "scale(1.02)";
+            event.target.style.zIndex = 1;
+            event.target.style.transition = "all 0.2s";
+        }
+        function zoomOut(event) {
+            event.target.style.transform = "scale(1)";
+            event.target.style.zIndex = 0;
+            event.target.style.transition = "all 0.5s";
+        }
+    </script>
+</body>
+</html>
