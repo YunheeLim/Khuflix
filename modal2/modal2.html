@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="modal2.css">
+    <script src="https://kit.fontawesome.com/11643b24f4.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="open content" style="cursor: pointer;">
+        <div id="content">OPEN</div>
+    </div>
+    
+    <div class="modal hidden">
+        <div class="background">
+            <div class="playpart">
+                <div style="position: relative;">
+                    <div style="position: absolute; top: 30px; right: 35px;">
+                        <button class="circle close"><i class="fas fa-times"></i></button>
+                    </div>
+                    <!-- <iframe width="850" height="479" src="https://www.youtube.com/embed/SaBwCrrk8ng?controls=0" 
+                    title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; 
+                    encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+                    <div style="position: absolute; top: 230px; left: 50px;">
+                        <img class="logo" src="detail/logo.png"></img>
+                        <div class="buttons">
+                            <button class="play"><i class="fas fa-play playing"></i> 재생</button>
+                            <button class="circle"><i class="fas fa-check"></i></button>
+                            <button class="circle"><i class="far fa-thumbs-up"></i></button>
+                            <button class="circle"><i class="far fa-thumbs-down"></i></button>
+                            <!-- <button class="circle" id="mute"><i class="fas fa-volume-mute"></i></button> -->
+                        </div>
+                    </div>
+                </div>
+                <!-- <img class="video" src="video.jpg"></img> -->
+            </div>
+            <div class="infopart">
+                <div class="section1">
+                    <div class="left">
+                        <p>
+                            <span style="color:#46D369; font-weight:bold;">92% 일치 </span>
+                            <span style="color: #FFFFFF; font-weight:normal">2021</span>
+                        </p>
+                        <p>
+                            <span class ="detail" style="color: #FFFFFF; font-weight:normal;">
+                                탄생과 죽음이 공존하는, 
+                                인생의 축소판이라고 불리는 병원에서 특별한 하루하루를 살아가는 사람들의 
+                                이야기를 그린 드라마
+                            </span>
+                        </p>
+                    </div>
+                    <div class="right">
+                        <div class="info">
+                            <span class="article">출연:</span>
+                            <span class="contents">조정석, 유연석, 정경호, <I>더보기</I></span>
+                        </div>
+                        <div class="info">
+                            <span class="article">장르:</span>
+                            <span class="contents">메디컬 TV 시리즈, 한국 드라마, TV 드라마</span>
+                        </div>
+                        <div class="info">
+                            <span class="article">프로그램 특징:</span>
+                            <span class="contents">힐링, 가슴 뭉클</span>
+                        </div>
+                    </div>
+                </div>
+    
+    
+                <div class="tab_content">
+                    <input type="radio" name="tabmenu" id="tab01" checked>
+                    <label for="tab01"><h3>회차</h3></label>
+                    <input type="radio" name="tabmenu" id="tab02" unchecked>
+                    <label for="tab02"><h3>OST</h3></label>
+    
+                    <div class="conbox con1">
+                        <div class="episode">
+                            <!-- <div class="es"><h3 id="es">회차</h3></div> -->
+                            <div class="epi first_e">
+                                <div class="e_number out_box"><div class="e_num in_box">1</div></div>
+                                <div class="thumbnail out_box"><div class="in_box"><img class="thumb" src="detail/1-1.jpg"></div></div>
+                                <div class="text">
+                                    <div class="e_title">
+                                        <div class="story">1화</div>
+                                        <div class="time">82분</div>
+                                    </div>
+                                    <div class="summary"><p>99학번 의예과 동갑내기 친구들, 이젠 내 환자 보기에도 24시간이 부족한 40대 의사가 되었다.
+                                        각자 방식으로 살아가던 다섯 명의 친구들에게 한 통의 전화가 걸려오는데!</p></div>
+                                </div>
+                                <div class="blank"></div>
+                            </div>
+                            <div class="epi">
+                                <div class="e_number out_box"><div class="e_num in_box">2</div></div>
+                                <div class="thumbnail out_box"><div class="in_box"><img class="thumb" src="detail/1-2.jpg"></div></div>
+                                <div class="text">
+                                    <div class="e_title">
+                                        <div class="story">2화</div>
+                                        <div class="time">82분</div>
+                                    </div>
+                                    <div class="summary"><p>20년 만에 한 병원에서 만나게 된 친구들. 오늘도 각자 한 사람의 의사로서 최선을 다한다. 
+                                        한편, 송화는 환자 차트에서 왜인지 낯설지 않은 이름을 발견하는데...</p></div>
+                                </div>
+                                <div class="blank"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="conbox con2">
+                        <div class="ostpart">
+                            <div class="LP">
+                                <div class="center">
+                                    <img class="vinyl" src="detail/vinyl.png" alt="vinyl">
+                                    <img class="cover" src="detail/cover.jpg" alt="cover">
+                                </div>
+                            </div>
+                            <div class="track first_t">
+                                <div class="number">1</div>
+                                <div class="o_title">Lonely Night</div>
+                                <div class="singer">권진아</div>
+                                <div class="option">
+                                    <a class="music" href=""><i class="fas fa-play"></i></a>
+                                    <a class="music" href=""><i class="far fa-heart"></i></a>
+                                </div>
+                            </div>
+                            <div class="track">
+                                <div class="number">2</div>
+                                <div class="o_title">좋은 사람 있으면 소개시켜줘</div>
+                                <div class="singer">조이 (JOY)</div>
+                                <div class="option">
+                                    <a class="music" href=""><i class="fas fa-play"></i></a>
+                                    <a class="music" href=""><i class="far fa-heart"></i></a>
+                                </div>
+                            </div>
+                            <div class="track">
+                                <div class="number">3</div>
+                                <div class="o_title">아로하</div>
+                                <div class="singer">조정석</div>
+                                <div class="option">
+                                    <a class="music" href="https://youtu.be/3DOkxQ3HDXE" target="_blank"><i class="fas fa-play"></i></a>
+                                    <a class="music" href=""><i class="far fa-heart"></i></a>
+                                </div>
+                            </div>
+                            <div class="track">
+                                <div class="number">4</div>
+                                <div class="o_title">화려하지 않은 고백</div>
+                                <div class="singer">규현 (KHUHYUN)</div>
+                                <div class="option">
+                                    <a class="music" href=""><i class="fas fa-play"></i></a>
+                                    <a class="music" href=""><i class="far fa-heart"></i></a>
+                                </div>
+                            </div>
+                        </div>        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>	
+
+    
+    <script>
+        const open = document.querySelector(".open");
+        const close = document.querySelector(".close");
+        const modal = document.querySelector(".modal");
+
+        function init() {
+            open.addEventListener("click", function(){
+                modal.classList.remove("hidden");
+            });
+            close.addEventListener("click",function(){
+                modal.classList.add("hidden");
+            });
+        }
+
+        init();
+    </script>
+</body>
+</html>
