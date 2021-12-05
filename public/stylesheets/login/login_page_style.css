@@ -80,6 +80,7 @@ h1{
     width: 314px;
     height: 48px;
     color: white;
+    cursor: pointer;
 }
 
 .save{

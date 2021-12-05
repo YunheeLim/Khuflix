@@ -6,18 +6,19 @@ var kakaoStrategy = require('passport-kakao').Strategy;
 var naverStrategy = require('passport-naver').Strategy;
 var facebookStrategy = require('passport-facebook').Strategy;
 var config = require('../config/secret');
-var model = require('../models');//사용자 모델 스키마 가져오기
+var model = require('../models');//모델 스키마 가져오기
 const { session } = require('passport');
 var Users = model.Users; //사용자 객체 생성을 위한 오브젝트
 var Videos = model.Videos; //비디오 객체 생성을 위한 오브젝트
-var remember_Id; //입력받은 id(이메일)를 frontEnd의 placeholder로 사용하기 위함
+var remember_Id; //입력받은 아이디(이메일)를 frontEnd의 placeholder에 전달하는 변수
 
 //첫페이지
 //first_page 렌더링
 router.get('/first', function(req, res){
     res.render('login/first_page');
 })
-// 이메일 주소(전화번호) 데이터 저장
+
+// 아이디(이메일 주소) 데이터 저장
 router.post('/first', function(req, res){
     remember_Id = req.body.id;
     Users.findOne({ id: req.body.id}, (err, user) =>{
@@ -28,13 +29,34 @@ router.post('/first', function(req, res){
 
 //메인페이지
 router.get('/main', function(req, res){
-    if(req.session.is_logined==undefined || req.session.is_logined==undefined){//로그인 안하면 접근 못하도록 막기
+    if(req.session.is_logined==undefined || req.session.is_logined==false){//로그인 안하면 접근 못하도록 막기
          res.send('로그인 해주세요');
     }else{
-        Users.findById(req.session._id, 'name history',(err,user)=>{//사용자 이름과 시청기록만 얻기
-            if(err) res.send('메인페이지 에러');
-            res.render('login/main_page',{user:user}); //얻은 정보를 main page에 전달
-        });
+        //메인으로 띄워줄 동영상 랜덤으로 추출
+        Videos.count().exec(function (err, count) {
+        var random = Math.floor(Math.random() * count)      
+         Videos.findOne().skip(random).exec(
+            function (err, random_video) {
+                if(err) res.send('randomvideo 에러');
+                get_all_videos(random_video);
+            });
+         });
+
+        //동영상 모두 가져오기
+         function get_all_videos(random_video){
+            Videos.find({}, function(err, videos){ 
+                if(err) res.send('get_all_video 에러');
+                get_history(random_video, videos);
+            });
+         };
+
+         // 사용자 이름과 시청기록 가져오기
+         function get_history(random_video, videos){
+            Users.findById(req.session._id, 'name history',(err,user)=>{
+                if(err) res.send('get_history 에러');
+                res.render('login/main_page',{random_video:random_video, videos:videos, user:user}); //얻은 정보들을 main page에 전달
+            });
+         };
     }
 });
 
@@ -48,12 +70,12 @@ router.get('/signup', function(req, res){
 router.post('/signup', function(req, res){
     remember_Id = req.body.id;
     var userId = req.body.id;
-    var userName = userId.split('@')[0]; //이메일 앞부분을 사용자 이름으로 지정
+    var userName = userId.split('@')[0]; //이메일 앞부분을 사용자 이름으로 저장
     var userPw = req.body.pw;
-    console.log(userId, userName, userPw);
+    //console.log(userId, userName, userPw);
     var new_user = new Users({name:userName,id:userId,pw:userPw}); //새로운 회원 저장을 위한 객체생성
     new_user.save(function(err){ //새로운 회원 데이터베이스에 저장
-        if(err) res.status(500).send('회원가입 에러');
+        if(err) res.status(500).send('회원가입 에러: 이메일 칸을 채웠는지 확인해주세요');
         else res.redirect('/login'); //회원가입 성공시 로그인페이지로
     });
 });
@@ -214,13 +236,13 @@ router.get('/logout', function(req, res){
 });
 
 //회원탈퇴
-router.delete('/remove', function(req, res){
+router.get('/remove', function(req, res){
     if(req.session.is_logined){
-        Users.remove({id: userId}, function(err, removed){
+        Users.remove({id: req.session.userId}, function(err, removed){
             if(err){
                 res.status(500).send('탈퇴 에러');
             }else{
-                req.sessionlis_logined = false;
+                req.session.is_logined = false;
                 req.session.destroy((err)=>{ //세션제거
                     if(err) throw err;
                     res.redirect('/first'); //탈퇴완료 시 첫페이지로
