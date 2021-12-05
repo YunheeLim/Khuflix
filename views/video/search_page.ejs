@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KhuFlix</title>
-    <link rel="stylesheet" href="../../public/stylesheets/video/search_page_style.css">
+    <link rel="stylesheet" href="/stylesheets/video/search_page_style.css">
 </head>
 <body>
     <header>
@@ -28,19 +28,19 @@
         </div>
         </nav>
     </header>
-    <%if(result =='true_for_title'){%>
+    <%if(result =='true_for_title'){%> <!--제목으로 검색-->
         <div class="results_display">
-            <img class="results" src="../../public/images/thumb/<%=video.title%>_thumb.jpg" onclick="location.href='/detail/<%=video.title%>'">
+            <img class="results" src="/images/thumb/<%=video.title%>_thumb.jpg" onclick="location.href='/detail?title=<%=video.title%>'">
             <p><%=video.title%></p>
         </div>
-    <%}else if(result=='true_for_contents'){%>
+    <%}else if(result=='true_for_contents'){%> <!--내용으로 검색-->
         <div class="results_display">
         <% result_videos.forEach((video)=>{%> 
-            <img class="results" src="../../public/images/thumb/<%=video.title%>_thumb.jpg" onclick="location.href='/detail/<%=video.title%>'">
+            <img class="results" src="/images/thumb/<%=video.title%>_thumb.jpg" onclick="location.href='/detail?title=<%=video.title%>'">
             <p><%=video.title%></p>
         <%});%>
         </div>
-    <%}else if(result===false){%>
+    <%}else if(result===false){%> <!--검색 실패-->
         <div class="noReturn">
             <h3>입력하신 검색어와 일치하는 결과가 없습니다 :(</h3>
             <br>

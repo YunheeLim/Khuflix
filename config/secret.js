@@ -1,19 +1,19 @@
 module.exports={
     'mongoDB':{
-        'password':'***'
+        'password':'******'
     },
     'naver':{
-        'clientID':'***',
-        'clientSecret':'***',
-        'callbackURL':'***'
+        'clientID':'******',
+        'clientSecret':'******',
+        'callbackURL':'******'
     },
     'kakao':{
-        'clientID': '***',
-        'callbackURL': '***'
+        'clientID': '******',
+        'callbackURL': '******'
     },
     'facebook':{
-        'clientID': '***',
-        'clientSecret': '***',
-        'callbackURL':'***'
+        'clientID': '******',
+        'clientSecret': '******',
+        'callbackURL':'******'
     }
 }

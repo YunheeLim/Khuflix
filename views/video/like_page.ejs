@@ -1,0 +1,7 @@
+<% if(user.like.length == 0){%>
+    <div>찜한 콘텐츠가 없습니다.</div> 
+<%}else{%>
+<% user.like.forEach((like)=>{%> 
+    <img class="results" src="/images/thumb/<%=like.title%>_thumb.jpg" onclick="location.href='/detail/<%=like.title%>'">
+    <p><%=like.title%></p>
+<%});}%>
