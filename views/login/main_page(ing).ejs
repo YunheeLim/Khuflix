@@ -5,14 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>홈 - 쿠플릭스</title>
-    <link rel="icon" href="imgs/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
     <link rel="stylesheet" href="/stylesheets/login/main_page(ing)_style.css">
     <script src="https://kit.fontawesome.com/11643b24f4.js" crossorigin="anonymous"></script>
     <!--nodejs로부터 css에도 데이터 넘겨주기 위해 inline방식 사용-->
     <style> 
     .mainpart{
-         display: block;
-         background : linear-gradient(to top, #000000, transparent 80%), url('/images/thumb/강아지_thumb.jpg'); /*아직 데이터 안채워져서 랜덤동영상 임의로fix*/
+        display: block;
+        background : linear-gradient(to top, #000000, transparent 80%), url('/images/random/인간수업_random.jpg'); /*아직 데이터 안채워져서 랜덤동영상 임의로fix*/
         background-size: cover;
         }
     </style>
@@ -38,7 +38,15 @@
                 <ul class="top_right">
                     <li><i class="fas fa-search" onclick="location.href='/search'"></i></li>
                     <li><i class="fas fa-bell"></i></li>
-                    <li><img class="acc" src="/images/account.png"></li>
+                    <li class="account">
+                        <img class="acc" src="/images/account.png">
+                        <ul class="account sub"> 
+                            <li class="acc_li" style="font-weight: 600; color: #8fb6ff;"><%=user.name%></li>
+                            <li class="account s_li" href=""><p>내가 찜한 콘텐츠</p></li>
+                            <li class="account s_li logout"><p>로그아웃</p></li>
+                            <li class="account s_li exit" onclick=""><p>회원탈퇴</p></li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -48,7 +56,7 @@
         
         <div class="part">
             <div class="logo" onclick="location.href='/detail?title=강아지'">
-                <img class="title_logo" src="/images/logo/강아지_logo.png" >
+                <img class="title_logo" src="/images/logo/인간수업_logo.png" >
             </div>
         </div> 
         <div class="contents c1">한국이 만든 콘텐츠</div>
@@ -93,7 +101,7 @@
                                     </div>
                                 </div>
                             </div>
-                             <% videos.forEach((video)=>{%>
+                            <% videos.forEach((video)=>{%>
                                 <img class="i" src="/images/thumb/<%=video.title%>_thumb.jpg" onmouseenter="zoomIn(event)" onmouseleave="zoomOut(event)">
                             <%});%>
                             <label for="slide02" class="right"></label>
