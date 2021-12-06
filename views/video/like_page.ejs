@@ -1,7 +1,38 @@
+<link rel="stylesheet" href="/stylesheets/video/like_page_style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap" rel="stylesheet">
+
+
 <% if(user.like.length == 0){%>
-    <div>찜한 콘텐츠가 없습니다.</div> 
+    <div class="no_content">
+        <h1> 찜한 콘텐츠가 없습니다 :( </h1>
+        <h2>원하는 프로그램에 좋아요를 눌러보는 건 어떨까요?</h2>
+        <p>3초 뒤에 메인으로 돌아갑니다</p>
+        <script>
+        setTimeout(function(){
+            location.href="/main"
+        },3000);
+        </script>
+    </div> 
 <%}else{%>
-<% user.like.forEach((like)=>{%> 
-    <img class="results" src="/images/thumb/<%=like.title%>_thumb.jpg" onclick="location.href='/detail/<%=like.title%>'">
-    <p><%=like.title%></p>
-<%});}%>
+    <h3> X </h3>
+    <script>
+        const xBtn = document.querySelector('h3');
+
+        xBtn.addEventListener("click",()=>{
+            location.href="/main";
+        })
+    </script>
+    <div class="header">
+        <h1> 회원님께서 찜한 컨텐츠입니다 </h1>
+    </div>
+    <div class="list_container">
+        <% user.like.forEach((like)=>{%>
+        <div class="container">
+            <div class="img_container">
+                <img class="results" src="/images/thumb/<%=like.title%>_thumb.jpg" onclick="location.href='/detail/<%=like.title%>'">
+            </div>
+            <p><%=like.title%></p>
+        </div>
+<%});}%></div>
