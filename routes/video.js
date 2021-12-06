@@ -52,7 +52,7 @@ router.get('/like/:video_title', function(req, res){
             Users.findOneAndUpdate({id:req.session.userId},{$push : {like:{title:video_title}}}).exec();
         }
     });
-    res.redirect('/detail/'+video_title);
+    res.redirect('/detail?title='+video_title);
 });
 
 

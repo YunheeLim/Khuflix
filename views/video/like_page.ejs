@@ -31,7 +31,7 @@
         <% user.like.forEach((like)=>{%>
         <div class="container">
             <div class="img_container">
-                <img class="results" src="/images/thumb/<%=like.title%>_thumb.jpg" onclick="location.href='/detail/<%=like.title%>'">
+                <img class="results" src="/images/thumb/<%=like.title%>_thumb.jpg" onclick="location.href='/detail?title=<%=like.title%>'">
             </div>
             <p><%=like.title%></p>
         </div>
