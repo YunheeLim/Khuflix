@@ -1,12 +1,57 @@
-.navBar{
-    color:red;
-
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-
 body{
     width: 100%;
     font-family: 'roboto',sans-serif;
+    word-break: keep-all;
 }
+
+/* ----------HEAD---------- */
+
+header{
+    position: relative;
+}
+.navBar{
+    position: fixed;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 91px;
+    border-bottom: 1px solid #e6e6e6;
+}
+
+.logo{
+    display: flex;
+    float: left;
+    padding-left: 3.5%;
+}
+#golo{
+    width: 170px;
+    cursor: pointer;
+}
+
+.login{
+    float: right;
+    width: 8%;
+    display: table;
+}
+#inlog{
+    font-size: 19px;
+    color: #333;
+    font-weight: 700;
+    text-decoration: none;
+    /* line-height: 90px; */
+}
+#inlog:hover{
+    text-decoration: underline;
+}
+
+
+/* ----------CONTENT---------- */
 
 .content_area
 {
@@ -16,23 +61,41 @@ body{
     left:50%;
     top:50%;
     margin-left:-220px;
-    margin-top:-170px;
-    font-family: 'Roboto', sans-serif;
+    margin-top:-180px;
+}
+
+h1{
+    font-size: 23px;
+    margin-bottom: 9px;
+}
+h2{
+    font-size: 19px;
+    font-weight: 400;
+    margin-bottom: 30px;
+}
+h3{
+    font-size: 16px;
+}
+
+#email_place, #pwd_place{
+    font-size: 16px;
+    width:440px;
+    height:60px;
+    padding: 0px 10px;
+    margin: 2px 0px 10px;
 }
 
 #submit_btn{
+    width: 440px;
+    height: 48px;
     color:white;
-    background-color: red;
+    font-size: 17px;
+    background-color: #E50914;
+    border-radius: 2px;
     border: transparent;
-    height: 36px;
-    width:255px;
-
+    margin: 25px 0px;
+    cursor: pointer;
 }
-#pwd_place{
-    width:250px;
-    height:37px;
-}
-#email_place{
-    width:250px;
-    height:37px;
+#submit_btn:hover{
+    background-color: #F6121D;
 }

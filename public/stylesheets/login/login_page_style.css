@@ -4,10 +4,11 @@
 }
 
 .background{
-    width: 100%;
+    height: 100vh;
     background: url("../../images/background.jpg");
+    background-repeat : no-repeat;
+    background-size : cover;
 }
-
 .background::after{
     content: '';
     position: absolute;
@@ -16,16 +17,27 @@
     width: 100%;
     height: 100%;
     z-index: 1;
-    background: rgba(0, 0, 0, 0.48)
+    background: rgba(0, 0, 0, 0.5)
+}
+.top{
+    position: relative;
+    width: 100%;
+    height: 10%;
+    background: linear-gradient(to bottom,rgba(0,0,0,.5) 10%,rgba(0,0,0,0));
 }
 
-img{
+.KHUFLIX{
     position: relative;
-    z-index: 2;
-    height: 50px;
-    width: auto;
-    padding: 8px;
+    z-index: 3;
+    margin-left: 3%;
 }
+.logo{
+    width: 167px;
+    margin-top: 1.3%;
+}
+
+
+/* --------login_part-------- */
 
 .login-part{
     position: relative;
@@ -34,25 +46,32 @@ img{
     background: #000000BF;
     padding: 60px 68px 40px;
     margin:0 auto;
+    margin-bottom: 90px;
 }
 
 h1{
     text-align: left;
-    color: white;
+    color: #FFF;
     margin: 0px 0px 28px;
 }
 
 .idbox{
     padding: 0px 0px 16px;
 }
-
+input{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+input::placeholder{
+    color: #8c8c8c;;
+}
 #id{
     border:none;
     border-radius: 4px;
     font-size: 16px;
-    color: #8c8c8c;
+    color: #FFF;
     background: #333333;
-    width: 314px;
+    width: 294px;
     height: 50px;
 }
 
@@ -64,9 +83,9 @@ h1{
     border:none;
     border-radius: 4px;
     font-size: 16px;
-    color: #8c8c8c;
+    color: #FFF;
     background: #333333;
-    width: 314px;
+    width: 294px;
     height: 50px;
 }
 
@@ -82,23 +101,29 @@ h1{
     color: white;
     cursor: pointer;
 }
+.login:hover{
+    background-color: #bd0a13;
+}
 
 .save{
     font-size: 13px;
     color: #b3b3b3;
-    width: 403.53px;
+    width: 314px;
     height: 24.6px;
-    padding: 0px 0px 8px 0px;
+    padding: 0px 0px 6px 0px;
+    display: flex;
+    justify-content: space-between;
 }
 
 #to_netflix{
     font-size: 13px;
-    color: whitesmoke;
+    color: #b3b3b3;
     font:bold;
-    width: 403.53px;
-    height: 24.6px;
-    padding: 0px 0px 8px 0px;
+    /* width: 403.53px; */
+    /* height: 24.6px; */
+    padding: 0px 0px 6px 0px;
     cursor: pointer;
+    text-decoration: none;
 }
 #to_netflix:hover{
     text-decoration: underline;
@@ -143,28 +168,46 @@ a{
     color: #FFFFFF;
     text-decoration-line : none;
 }
+#b1:hover{
+    text-decoration: underline;
+}
 
 #b2{
     font-size: 13px;
     color: #0071EB;
     text-decoration: none;
 }
+#b2:hover{
+    text-decoration: underline;
+}
 
 .robot{
     margin: 13px 0px;
     font-size: 13px;
+    height: 135px;
     color: #8c8c8c;
 }
 
+/* --------info_part-------- */
+
 .info-part{
-    position: relative;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height:10.5%;
     z-index: 2;
     color: #757575;
     background: #000000BF;
-    padding: 30px 0px;
+    padding: 25px;
+    padding-left: 40px;
+}
+.info-position{
+    width: 50%;
+    margin: 0 auto;
 }
 
 .info{
     font-size: 12px;
     color: #808080;
+    padding-top: 10px;
 }
