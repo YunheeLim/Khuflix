@@ -54,7 +54,7 @@ router.get('/main', function(req, res){
          function get_history(random_video, videos){
             Users.findById(req.session._id, 'name history',(err,user)=>{
                 if(err) res.send('get_history 에러');
-                res.render('login/main_page',{random_video:random_video, videos:videos, user:user}); //얻은 정보들을 main page에 전달
+                res.render('login/main_page(ing)',{random_video:random_video, videos:videos, user:user}); //얻은 정보들을 main page에 전달
             });
          };
     }

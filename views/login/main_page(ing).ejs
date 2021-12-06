@@ -10,12 +10,11 @@
     <script src="https://kit.fontawesome.com/11643b24f4.js" crossorigin="anonymous"></script>
     <!--nodejs로부터 css에도 데이터 넘겨주기 위해 inline방식 사용-->
     <style> 
-        .mainpart{
-        display: block;
-        background : linear-gradient(to top, #000000, transparent 80%), url('/images/thumb/<%=random_video.title%>_thumb.jpg');
+    .mainpart{
+         display: block;
+         background : linear-gradient(to top, #000000, transparent 80%), url('/images/thumb/강아지_thumb.jpg'); /*아직 데이터 안채워져서 랜덤동영상 임의로fix*/
         background-size: cover;
-        cursor: pointer;
-    }
+        }
     </style>
 </head>
 <body>
@@ -23,15 +22,15 @@
         <nav class="navBar">
             <div class="nav_left">
                 <div class="KHUFLIX">
-                    <div class="in_logo"><img class="title" src="/images/KHU_FLIX.png" onclick="location.href='/main'"></div>
+                    <div class="in_logo"><img class="title" src="/images/KHUFLIX.png" onclick="location.href='/main'"></div>
                 </div>
                 <div class="nav_menu">
                     <ul class="In_navbar">
                         <a class="menu page" href="/main">홈</a>
-                        <a class="menu" href="">TV 프로그램</a>
-                        <a class="menu" href="">영화</a>
+                        <a class="menu" href="/TV_list">TV 프로그램</a>
+                        <a class="menu" href="/movie_list">영화</a>
                         <a class="menu" href="">NEW! 요즘 대세 콘텐츠</a>
-                        <a class="menu" href="">내가 찜한 콘텐츠</a>
+                        <a class="menu" href="/like">내가 찜한 콘텐츠</a>
                     </ul>
                 </div>
             </div>
@@ -39,43 +38,17 @@
                 <ul class="top_right">
                     <li><i class="fas fa-search" onclick="location.href='/search'"></i></li>
                     <li><i class="fas fa-bell"></i></li>
-                    <li><img class="acc" src="/images/account.png">
-                        <ul class="account sub"> 
-                        <li class="acc_li"><%=user.name%></li>
-                        <li class="account s_li" href="">내가 찜한 콘텐츠</li>
-                        <li class="account s_li logout">로그아웃</li>
-                        <li class="account s_li exit" onclick="">회원탈퇴</li>
-                        </ul>
-                    </li>
+                    <li><img class="acc" src="/images/account.png"></li>
                 </ul>
             </div>
         </nav>
     </header>
-    <div class="modal">
-        <div class="logout_body">
-            <div class="logout_content">
-            <h2> 정말 로그아웃 하시겠습니까? </h2><br>
-            <button type="submit" class="yes_btn" name="logoutBTN">네</button> <button class="no_btn">아니요</button>
-            <span class="lines"></span>
-            </div>
-        </div>
-    </div>
 
-    <div class="modal_exit">
-        <div class="exit_body">
-            <div class="exit_content">
-            <h2> 아직 쿠플릭스에서 못 즐긴 컨텐츠가 많아요 :( <br> 정말 탈퇴하실 건가요?</h2>
-            <button type="submit" class="yes_btn_exit" name="deleteBTN">네</button> <button class="no_btn_exit">아니요</button>
-            <span class="lines_exit"></span>
-            </div>
-        </div>
-    </div>
-
-    <div class="mainpart" style="position: relative;" onclick="location.href='/detail/<%=random_video.title%>'">
+    <div class="mainpart" style="position: relative;" >
         
         <div class="part">
-            <div class="logo">
-                <img class="title_logo" src="/images/logo/<%=random_video.title%>_logo.png" alt="<%=random_video.title%>">
+            <div class="logo" onclick="location.href='/detail?title=강아지'">
+                <img class="title_logo" src="/images/logo/강아지_logo.png" >
             </div>
         </div> 
         <div class="contents c1">한국이 만든 콘텐츠</div>
@@ -85,18 +58,14 @@
             <input type="radio" name="slide" id="slide03">
             <div class="slidewrap s1">
                 <ul class="slidelist">
-                    <!--
                     <li>
                         <a>
                             <div class="image">
-                                <img class="i" src="imgs/squid.png" onmouseenter="zoomIn(event)" onmouseleave="zoomOut(event)">
-                            </div>
-                            <div class="image">
-                                <img class="i btn-open-popup" src="imgs/drama1.png" onmouseenter="zoomIn(event)" onmouseleave="zoomOut(event)">
+                                <img class="i btn-open-popup" src="/images/drama1.png" onmouseenter="zoomIn(event)" onmouseleave="zoomOut(event)">
                                 <div class="modal">
                                     <div class="container">
                                         <section class="item item-a open">
-                                            <img class="pre" src="imgs/preview.png" alt="">
+                                            <img class="pre" src="/images/preview.png" alt="">
                                         </section>
                                         <section class="item item-b">
                                             <div class="container2">
@@ -124,36 +93,61 @@
                                     </div>
                                 </div>
                             </div>
-                            <img class="i" src="imgs/hell.png" onmouseenter="zoomIn(event)" onmouseleave="zoomOut(event)">
-                            <img class="i" src="imgs/vin.png" onmouseenter="zoomIn(event)" onmouseleave="zoomOut(event)">
-                            <img class="i" src="imgs/hotel.png" onmouseenter="zoomIn(event)" onmouseleave="zoomOut(event)">
+                             <% videos.forEach((video)=>{%>
+                                <img class="i" src="/images/thumb/<%=video.title%>_thumb.jpg" onmouseenter="zoomIn(event)" onmouseleave="zoomOut(event)">
+                            <%});%>
                             <label for="slide02" class="right"></label>
                         </a>
                     </li>
                     <li>
                         <a>
                             <label for="slide01" class="left"></label>
-                            <img class="i" src="imgs/hell.png">
-                            <img class="i" src="imgs/vin.png">
-                            <img class="i" src="imgs/hotel.png">
-                            <img class="i" src="imgs/squid.png">
-                            <img class="i" src="imgs/drama1.png">
+                            <% videos.forEach((video)=>{%>
+                                <img class="i" src="/images/thumb/<%=video.title%>_thumb.jpg" onmouseenter="zoomIn(event)" onmouseleave="zoomOut(event)">
+                            <%});%>
                             <label for="slide03" class="right"></label>
                         </a>
                     </li>
                     <li>
                         <a>
                             <label for="slide02" class="left"></label>
-                            <img class="i" src="imgs/vin.png">
-                            <img class="i" src="imgs/hotel.png">
-                            <img class="i" src="imgs/drama1.png">
-                            <img class="i" src="imgs/hell.png">
-                            <img class="i" src="imgs/squid.png">
+                            <% videos.forEach((video)=>{%>
+                                <img class="i" src="/images/thumb/<%=video.title%>_thumb.jpg" onmouseenter="zoomIn(event)" onmouseleave="zoomOut(event)">
+                            <%});%>
                         </a>
-                    </li>-->
+                    </li>
                 </ul>
             </div>
-            <div class="contents c2">Sunha님이 시청중인 콘텐츠</div>
+
+            <div class="contents c2"><%=user.name%>님이 시청중인 콘텐츠</div>
+            <ul class="slidelist">
+                <li>
+                    <a>
+
+                        <% user.history.forEach((video)=>{%>
+                            <img class="thumb" src="/images/thumb/<%=video.title%><%=video.episode%>_thumb.jpg" alt="" onclick="location.href='/streaming/<%=video.title%>/<%=video.episode%>'">
+                            <%});%>
+                        <label for="slide02" class="right"></label>
+                    </a>
+                </li>
+                <li>
+                    <a>
+                        <label for="slide01" class="left"></label>
+                        <% user.history.forEach((video)=>{%>
+                            <img class="thumb" src="/images/thumb/<%=video.title%><%=video.episode%>_thumb.jpg" alt="" onclick="location.href='/streaming/<%=video.title%>/<%=video.episode%>'">
+                            <%});%>
+                        <label for="slide03" class="right"></label>
+                    </a>
+                </li>
+                <li>
+                    <a>
+                        <label for="slide02" class="left"></label>
+                        <% user.history.forEach((video)=>{%>
+                            <img class="thumb" src="/images/thumb/<%=video.title%><%=video.episode%>_thumb.jpg" alt="" onclick="location.href='/streaming/<%=video.title%>/<%=video.episode%>'">
+                            <%});%>
+                    </a>
+                </li>
+            </ul>
         </div>
     </div>
 
@@ -168,7 +162,7 @@
                     title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; 
                     encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
                     <div style="position: absolute; top: 230px; left: 50px;">
-                        <img class="v_logo" src="imgs/logo.png"></img>
+                        <img class="v_logo" src="/images/logo/슬기로운 의사생활_logo.png"></img>
                         <div class="v_buttons">
                             <button class="v_play"><i class="fas fa-play playing m2"></i> 재생</button>
                             <button class="v_circle"><i class="fas fa-check m2"></i></button>
@@ -221,7 +215,7 @@
                             <!-- <div class="es"><h3 id="es">회차</h3></div> -->
                             <div class="epi first_e">
                                 <div class="e_number out_box"><div class="e_num in_box">1</div></div>
-                                <div class="thumbnail out_box"><div class="in_box"><img class="thumb" src="imgs/1-1.jpg"></div></div>
+                                <div class="thumbnail out_box"><div class="in_box"><img class="thumb" src="/images/1-1.jpg"></div></div>
                                 <div class="text">
                                     <div class="e_title">
                                         <div class="story">1화</div>
@@ -234,7 +228,7 @@
                             </div>
                             <div class="epi">
                                 <div class="e_number out_box"><div class="e_num in_box">2</div></div>
-                                <div class="thumbnail out_box"><div class="in_box"><img class="thumb" src="imgs/1-2.jpg"></div></div>
+                                <div class="thumbnail out_box"><div class="in_box"><img class="thumb" src="/images/1-2.jpg"></div></div>
                                 <div class="text">
                                     <div class="e_title">
                                         <div class="story">2화</div>
@@ -251,8 +245,8 @@
                         <div class="ostpart">
                             <div class="LP">
                                 <div class="center">
-                                    <img class="vinyl" src="imgs/vinyl.png" alt="vinyl">
-                                    <img class="cover" src="imgs/cover.jpg" alt="cover">
+                                    <img class="vinyl" src="/images/vinyl.png" alt="vinyl">
+                                    <img class="cover" src="/images/cover.jpg" alt="cover">
                                 </div>
                             </div>
                             <div class="track first_t">
@@ -281,98 +275,6 @@
     </div>	
     
     <script>
-    const body = document.querySelector('body');
-    const exit_body = document.querySelector('.exit_body');
-    const modal = document.querySelector('.modal');
-    const modal_exit = document.querySelector('.modal_exit');
-    const logoutBtn = document.querySelector('.logout');
-    const exitBtn = document.querySelector('.exit');
-    const yesBtnExit = document.querySelector('.yes_btn_exit');
-    const noBtnExit = document.querySelector('.no_btn_exit');
-    const yesBtn = document.querySelector('.yes_btn');
-    const noBtn = document.querySelector('.no_btn');
-    const lines = document.querySelector('.lines');
-    const lines_exit = document.querySelector('.lines_exit');
-    var h2 = document.getElementsByTagName('h2')[0];
-    var h22 = document.getElementsByTagName('h2')[1];
-
-      logoutBtn.addEventListener('click', () => {
-        modal.classList.toggle('show');
-
-        if (modal.classList.contains('show')) {
-          body.style.overflow = 'hidden';
-        }
-      });
-
-      exitBtn.addEventListener('click', () => {
-        modal_exit.classList.toggle('show');
-
-        if (modal_exit.classList.contains('show')) {
-          body.style.overflow = 'hidden';
-        }
-      });
-
-      modal.addEventListener('click', (event) => {
-        if (event.target === modal) {
-          modal.classList.toggle('show');
-
-          if (!modal.classList.contains('show')) {
-            body.style.overflow = 'auto';
-          }
-        }
-      });
-
-      modal_exit.addEventListener('click', (event) => {
-        if (event.target === modal_exit) {
-          modal_exit.classList.toggle('show');
-
-          if (!modal_exit.classList.contains('show')) {
-            body.style.overflow = 'auto';
-          }
-        }
-      });
-
-      noBtn.addEventListener('click',(event)=>{
-          location.href="new_main_page.html";
-      })
-
-      noBtnExit.addEventListener('click',(event)=>{
-          location.href="new_main_page.html";
-      })
-
-      yesBtn.addEventListener('click',(event)=>{
-          h2.remove();
-          yesBtn.remove();
-          noBtn.remove();
-        
-          lines.innerHTML="로그아웃 처리 되었습니다. 3초 후 로그인 페이지로 돌아갑니다.";
-          setTimeout(function(){
-              location.href="/logout";
-          },3000);
-      })
-
-      yesBtnExit.addEventListener('click',(event)=>{
-          h22.remove();
-          yesBtnExit.remove();
-          noBtnExit.remove();
-
-          lines_exit.innerHTML="탈퇴 처리 되었습니다. 3초 후 로그인 페이지로 돌아갑니다.";
-          setTimeout(function(){
-              location.href="/remove";
-          },3000);
-      })
-
-      //페이스북 로그인 시 url 끝에 생기는 '#_=_'를 제거
-    if (window.location.hash && window.location.hash == '#_=_') { 
-         history.pushState("", document.title, window.location.pathname + window.location.search);
-    }
-
-
-
-
-
-
-
         const modal = document.querySelector('.modal');
         const preview = document.querySelector('.btn-open-popup');
 
