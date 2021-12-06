@@ -96,7 +96,7 @@
                         <%for(var episode_idx = 0; episode_idx < target_video.episode.length; episode_idx++){%>
                         <!-- <div class="es"><h3 id="es">회차</h3></div> -->
                         <%if(episode_idx == 0){%>
-                        <div class="epi first_e">
+                        <div class="epi first_e" onclick="location.href='/streaming/<%=target_video.title%>/<%=episode_idx + 1%>'">
                             <div class="e_number out_box"><div class="e_num in_box">1</div></div>
                             <div class="thumbnail out_box"><div class="in_box"><img class="thumb" src="/images/thumb/<%=target_video.title%><%=episode_idx+1%>_thumb.jpg"></div></div>
                             <div class="text">
