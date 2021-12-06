@@ -1,4 +1,28 @@
+<link rel="stylesheet" href="/stylesheets/video/display_list.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap" rel="stylesheet">
+
+<h3> X </h3>
+    <script>
+        const xBtn = document.querySelector('h3');
+
+        xBtn.addEventListener("click",()=>{
+            location.href="/main";
+        })
+    </script>
+<div class="header">
+    <h1> 영화 </h1>
+    <span> 쿠플릭스에서 무제한으로 즐겨보세요!</span>
+</div>
+
+<div class="list_container">
 <% videos.forEach((video)=>{%> 
-    <img class="results" src="/images/thumb/<%=video.title%>_thumb.jpg" onclick="location.href='/detail/<%=video.title%>'">
-    <p><%=video.title%></p>
+    <div class="container">
+        <div class="img_container">
+            <img class="results" src="/images/thumb/<%=video.title%>_thumb.jpg" onclick="location.href='/detail/<%=video.title%>'">
+        </div>
+        <p><%=video.title%></p>
+    </div>  
 <%});%>
+</div>

@@ -1,0 +1,50 @@
+*{
+    background-color: black;
+    text-align: center;
+    font-family: 'Nanum Gothic', sans-serif;
+}
+
+h1,span,p{
+    color: rgb(255, 255, 255);
+}
+
+.header{
+    padding-top: 10px;
+}
+h3{
+    color: rgb(212, 4, 4);
+    text-align: left;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.list_container{
+    margin-top: 50px auto;
+    padding: auto;
+    display: inline-block;
+}
+
+.img_container{
+    width: 550px;
+    height: 350px;
+    overflow: hidden;
+}
+
+.container{
+    margin-top: 50px;
+    padding: auto;
+    width: 550px;
+    height: 400px;
+}
+
+.results{
+    width: 550px;
+    height: 350px;
+    transition: all 0.2s linear;
+
+}
+
+.results:hover{
+    cursor: pointer;
+    transform: scale( 1.4 );
+}
