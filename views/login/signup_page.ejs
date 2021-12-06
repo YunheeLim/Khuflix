@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,14 +10,18 @@
 <body>
     <header>
         <nav class="navBar">
-        <h1 class="title">KHUFLIX</h1>
-        <hr style="border: solid 1px gainsboro;">
+            <div class="logo">
+                <img id="golo" src="../../public/images/KHUFLIX.PNG" alt="KHUFLIX" onclick="location.href='/first'">
+            </div>
+            <div class="login">
+                <a id="inlog" href="/login">로그인</a>
+            </div>
         </nav>
     </header>
     <div class="content_area">
         <div>
         <form action="/signup" method="post">
-            <h1>회원님, 반갑습니다.<br>쿠플릭스 가입을 도와드릴께요!</h1>
+            <h1>회원님, 반갑습니다.<br>쿠플릭스 가입을 도와드릴게요!</h1>
             <h2> 비밀번호를 입력하면 회원가입이 완료됩니다!</h2>
             <%if(remember_Id){%>
                 <h3> 이메일 주소<br> <input type="email" placeholder=<%=remember_Id%> name="id" id="email_place"/> </h3>

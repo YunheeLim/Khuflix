@@ -1,3 +1,16 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+  word-break: keep-all;
+}
+.en{
+  display: hidden;
+}
+
+/* --------top-------- */
 
 .background{
   height: 100vh;
@@ -17,21 +30,44 @@
   background: radial-gradient(rgba(0, 0, 0, 0.4), black);
 }
 
+.top{
+  height: 10%;
+  display: flex;
+  justify-content: space-between;
+}
+.logo{
+  display: table;
+  margin-left: 6%;
+  margin-top: 0.5%;
+}
+.KF{
+  display: table-cell;
+  vertical-align: middle;
+}
+.boxes{
+  display: table;
+  margin-right: 8%;
+  margin-top: 0.5%;
+}
+.lang, .btn{
+  display: table-cell;
+  vertical-align: middle;
+}
+
 img{
   position: relative;
   z-index: 2;
   height: 50px;
   width: auto;
-  padding: 8px;
-  margin-top: 10px;
   margin-left: 35px;
 }
 
 select{
+  width: 95%;
   position: relative;
   z-index: 2;
   color: #FFFFFF;
-  padding: 8px 22px;
+  padding: 8px 20px;
   border: 1px solid #aaa;
   border-radius: 2px;
   background: #00000066;
@@ -42,12 +78,17 @@ button{
   width: 82px;
   height: 35px;
   font-size: 16px;
+  border: none;
   background: #E50914;
   position: relative;
   z-index: 2;
   color: #FFFFFF;
   border-radius: 3px;
   cursor: pointer;
+  margin-left: 5%;
+}
+button:hover{
+  background-color: #bd0a13;
 }
 
 span{
@@ -57,37 +98,41 @@ span{
   border-radius: 3px;
 }
 
+
+/* --------main-------- */
+
+
 .main{
-  padding: 75px 0px;
+  padding: 6.5% 0;
 }
 
 h1{
   position: relative;
   z-index: 2;
-  font-size: 50px;
+  font-size: 3.5rem;
   color: white;
   text-align: center;
-  margin: 10px 0px 20px 0px;
+  margin: 0 0.75em;
 }
 
 h2{
   position: relative;
   z-index: 2;
-  font-size: 26px;
+  font-size: 1.5rem;
   font-weight: 500;
   color: white;
   text-align: center;
-  margin: 10px 0px;
+  margin: 15px 0px 10px;
 }
 
 h3{
   position: relative;
   z-index: 2;
-  font-size: 23px;
+  font-size: 1.05rem;
   font-weight: 500;
   color: white;
   text-align: center;
-  margin: 10px 0px 40px 0px;
+  margin: 28px 0px 15px 0px;
 }
 
 .box{
@@ -96,6 +141,7 @@ h3{
 }
 
 input{
+  padding-left: 10px;
   border: solid 1px #8c8c8c;
   border-radius: 2px;
   position: relative;
@@ -118,4 +164,7 @@ input{
   height: 60px;
   font-size: 26px;
   cursor: pointer;
+}
+#start:hover{
+  background: #f40612;
 }

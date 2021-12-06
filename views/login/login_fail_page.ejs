@@ -4,15 +4,51 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/stylesheets/login/login_fail_page_style.css">
+    <title>Khuflix</title>
+    <link rel="stylesheet" href="../../public/stylesheets/login/login_fail_page_style.css">
+    <script src='"../../../../public/javascripts/login/login_page.js'></script>
 </head>
-<body>
-    <header class="background">
-        <div class="wrap">
-            <h1 class="title">Error!</h1>
-            <h2 class="title">이메일 주소 또는 비밀번호를 확인하세요.</h2>
+<body class="background">
+    <div class="top">
+        <div class="KHUFLIX">
+            <div class="KH"><img class="logo" src="../../public/images/KHUFLIX.PNG"></div>
         </div>
-    </header>
+    </div>
+    
+    <div class="login-part">
+        <div class=login-space>
+            <h1>Error!</h1>
+            <div class=login-main>
+                <form action="/login" method="post">
+                
+                <div class="errorbox">
+                    <span style="font-weight: bold;">아이디 또는 비밀번호를 잘못 입력하셨습니다.</span>
+                     다시 입력해주세요. 계정이 없는 경우 <a id="sign" href="/signup">회원가입</a>을 진행해주세요
+                </div>
+                <div class="relogin" onclick="location.href='/login'">다시 로그인하기</div>
+                </form>
+            </div>
+        </div>
+        
+        <div class="signup">
+            Khuflix 회원이 아닌가요?
+            <a id="b1" href="/signup">지금 가입하세요</a>
+        </div>
+        <div class="robot">
+            이 페이지는 Google reCAPTCHA의 보호를 받아 사용자가 로봇이 아님을 확인합니다.
+            <a id="b2" href="">자세히 알아보기</a>
+        </div>
+    </div>
+    <div class="info-part">
+        <div class="info_position">
+            <p id="info_q">질문이 있으신가요? 문의 전화: 080-123-4567</p>
+            <div class="info">
+                쿠플릭스서비시스코리아 <br>
+                대표: 이아영, 임윤희, 박선하 <br>
+                이메일 주소: khuflix@gmail.com <br>
+                [CSE22300] 오픈소스SW개발
+            </div>
+        </div>
+    </div>
 </body>
 </html>
