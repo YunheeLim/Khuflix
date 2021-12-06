@@ -28,12 +28,12 @@
         <div class="playpart">
             <div style="position: relative;">
                 <div style="position: absolute; top: 30px; right: 35px;">
-                    <button class="circle close"><i class="fas fa-times"></i></button>
+                    <button class="circle close" onclick="location.href='/main'"><i class="fas fa-times"></i></button>
                 </div>
                     <%if(target_video.type == 'original'){%> <!--original동영상이면 이미지 띄워주기-->
                         <!--<img class="video" src="/images/thumb/<%=target_video.title%>_thumb.jpg"></img>-->
                     <%}else if(target_video.type == 'youtube'){%> <!--youtube동영상이라면 티저영상 띄워주기-->
-                        <iframe width="850" height="479" src=<%=target_video.src%> 
+                        <iframe class="detail_video" width="850" height="479" src=<%=target_video.src%> 
                             title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; 
                             encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     <%}%>

@@ -12,7 +12,7 @@
     <style> 
     .mainpart{
         display: block;
-        background : linear-gradient(to top, #000000, transparent 80%), url('/images/random/인간수업_random.jpg'); /*아직 데이터 안채워져서 랜덤동영상 임의로fix*/
+        background : linear-gradient(to top, #000000, transparent 80%), url('/images/random/스타트업_random.jpg'); /*아직 데이터 안채워져서 랜덤동영상 임의로fix*/
         background-size: cover;
         }
     </style>
@@ -76,7 +76,7 @@
         
         <div class="part">
             <div class="logo" onclick="location.href='/detail?title=강아지'">
-                <img class="title_logo" src="/images/logo/인간수업_logo.png" >
+                <img class="title_logo" src="/images/logo/스타트업_logo.png" >
             </div>
         </div> 
         <div class="contents c1">한국이 만든 콘텐츠</div>
@@ -121,9 +121,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <label for="slide03" class="left"></label>
+                            <!-- <label for="slide03" class="left"></label> -->
                             <% videos.forEach((video)=>{%>
-                                <img class="i" src="/images/thumb/<%=video.title%>_thumb.jpg" width="341px" height="139px" onmouseenter="zoomIn(event)" onmouseleave="zoomOut(event)" onclick="location.href='/detail?title=<%=video.title%>'">
+                                <img class="i" src="/images/thumb/<%=video.title%>_thumb.jpg" width="341px" height="auto" onmouseenter="zoomIn(event)" onmouseleave="zoomOut(event)" onclick="location.href='/detail?title=<%=video.title%>'">
                             <%});%>
                             <label for="slide02" class="right"></label>
                         </a>
@@ -428,7 +428,7 @@
 
         function init() {
             open.addEventListener("click", function(){
-                // document.body.classList.add("stop-scroll");
+                // document.body.classList.add(".stop-scroll");
                 detail.classList.remove("hidden");
                 
 ;           });
