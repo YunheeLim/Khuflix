@@ -121,8 +121,9 @@
                                     </div>
                                 </div>
                             </div>
+                            <label for="slide03" class="left"></label>
                             <% videos.forEach((video)=>{%>
-                                <img class="i" src="/images/thumb/<%=video.title%>_thumb.jpg" onmouseenter="zoomIn(event)" onmouseleave="zoomOut(event)">
+                                <img class="i" src="/images/thumb/<%=video.title%>_thumb.jpg" width="341px" height="139px" onmouseenter="zoomIn(event)" onmouseleave="zoomOut(event)">
                             <%});%>
                             <label for="slide02" class="right"></label>
                         </a>
@@ -130,18 +131,13 @@
                     <li>
                         <a>
                             <label for="slide01" class="left"></label>
-                            <% videos.forEach((video)=>{%>
-                                <img class="i" src="/images/thumb/<%=video.title%>_thumb.jpg" onmouseenter="zoomIn(event)" onmouseleave="zoomOut(event)">
-                            <%});%>
                             <label for="slide03" class="right"></label>
                         </a>
                     </li>
                     <li>
                         <a>
                             <label for="slide02" class="left"></label>
-                            <% videos.forEach((video)=>{%>
-                                <img class="i" src="/images/thumb/<%=video.title%>_thumb.jpg" onmouseenter="zoomIn(event)" onmouseleave="zoomOut(event)">
-                            <%});%>
+                            <label for="slide01" class="right"></label>
                         </a>
                     </li>
                 </ul>
@@ -151,8 +147,9 @@
             <ul class="slidelist">
                 <li>
                     <a>
+                        <label for="slide03" class="left"></label>
                         <% user.history.forEach((video)=>{%>
-                            <img class="thumb" src="/images/thumb/<%=video.title%><%=video.episode%>_thumb.jpg" alt="" onclick="location.href='/streaming/<%=video.title%>/<%=video.episode%>'">
+                            <img class="thumb" src="/images/thumb/<%=video.title%><%=video.episode%>_thumb.jpg" width="341px" height="139px" alt="" onclick="location.href='/streaming/<%=video.title%>/<%=video.episode%>'">
                             <%});%>
                         <label for="slide02" class="right"></label>
                     </a>
@@ -160,20 +157,16 @@
                 <li>
                     <a>
                         <label for="slide01" class="left"></label>
-                        <% user.history.forEach((video)=>{%>
-                            <img class="thumb" src="/images/thumb/<%=video.title%><%=video.episode%>_thumb.jpg" alt="" onclick="location.href='/streaming/<%=video.title%>/<%=video.episode%>'">
-                            <%});%>
                         <label for="slide03" class="right"></label>
                     </a>
                 </li>
                 <li>
                     <a>
                         <label for="slide02" class="left"></label>
-                        <% user.history.forEach((video)=>{%>
-                            <img class="thumb" src="/images/thumb/<%=video.title%><%=video.episode%>_thumb.jpg" alt="" onclick="location.href='/streaming/<%=video.title%>/<%=video.episode%>'">
-                            <%});%>
+                        <label for="slide01" class="right"></label>
                     </a>
                 </li>
+                
             </ul>
         </div>
     </div>
