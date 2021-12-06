@@ -29,7 +29,6 @@
                         <a class="menu page" href="/main">홈</a>
                         <a class="menu" href="/TV_list">TV 프로그램</a>
                         <a class="menu" href="/movie_list">영화</a>
-                        <a class="menu" href="">NEW! 요즘 대세 콘텐츠</a>
                         <a class="menu" href="/like">내가 찜한 콘텐츠</a>
                     </ul>
                 </div>
@@ -51,6 +50,27 @@
             </div>
         </nav>
     </header>
+
+    <div class="logout_modal">
+        <div class="logout_body">
+            <div class="logout_content">
+            <h2> 정말 로그아웃 하시겠습니까? </h2><br>
+            <button type="submit" class="yes_btn" name="logoutBTN">네</button> <button class="no_btn">아니요</button>
+            <span class="lines"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="exit_modal">
+        <div class="exit_body">
+            <div class="exit_content">
+            <h2> 아직 쿠플릭스에서 못 즐긴 컨텐츠가 많아요 :( <br> 정말 탈퇴하실 건가요?</h2>
+            <button type="submit" class="yes_btn_exit" name="deleteBTN">네</button> <button class="no_btn_exit">아니요</button>
+            <span class="lines_exit"></span>
+            </div>
+        </div>
+    </div>
+
 
     <div class="mainpart" style="position: relative;" >
         
@@ -131,7 +151,6 @@
             <ul class="slidelist">
                 <li>
                     <a>
-
                         <% user.history.forEach((video)=>{%>
                             <img class="thumb" src="/images/thumb/<%=video.title%><%=video.episode%>_thumb.jpg" alt="" onclick="location.href='/streaming/<%=video.title%>/<%=video.episode%>'">
                             <%});%>
@@ -285,6 +304,94 @@
     <script>
         const modal = document.querySelector('.modal');
         const preview = document.querySelector('.btn-open-popup');
+
+        const body = document.querySelector('body');
+        const logout_modal = document.querySelector('.logout_modal');
+        const exit_modal = document.querySelector('.exit_modal');
+        const logoutBtn = document.querySelector('.logout');
+        const exitBtn = document.querySelector('.exit');
+        const yesBtnExit = document.querySelector('.yes_btn_exit');
+        const noBtnExit = document.querySelector('.no_btn_exit');
+        const yesBtn = document.querySelector('.yes_btn');
+        const noBtn = document.querySelector('.no_btn');
+        const lines = document.querySelector('.lines');
+        const lines_exit = document.querySelector('.lines_exit');
+        var h2 = document.getElementsByTagName('h2')[0];
+        var h22 = document.getElementsByTagName('h2')[1];
+
+        logoutBtn.addEventListener('click', () => {
+            logout_modal.classList.toggle('show');
+
+        if (logout_modal.classList.contains('show')) {
+          body.style.overflow = 'hidden';
+        }
+      });
+
+      exitBtn.addEventListener('click', () => {
+        exit_modal.classList.toggle('show');
+
+        if (exit_modal.classList.contains('show')) {
+          body.style.overflow = 'hidden';
+        }
+      });
+
+      logout_modal.addEventListener('click', (event) => {
+        if (event.target === logout_modal) {
+            logout_modal.classList.toggle('show');
+
+          if (!logout_modal.classList.contains('show')) {
+            body.style.overflow = 'auto';
+          }
+        }
+      });
+
+      exit_modal.addEventListener('click', (event) => {
+        if (event.target === exit_modal) {
+            exit_modal.classList.toggle('show');
+
+          if (!exit_modal.classList.contains('show')) {
+            body.style.overflow = 'auto';
+          }
+        }
+      });
+
+      noBtn.addEventListener('click',(event)=>{
+          location.href="/main";
+      })
+
+      noBtnExit.addEventListener('click',(event)=>{
+          location.href="/main";
+      })
+
+      yesBtn.addEventListener('click',(event)=>{
+          h2.remove();
+          yesBtn.remove();
+          noBtn.remove();
+        
+          lines.innerHTML="로그아웃 처리 되었습니다. 3초 후 로그인 페이지로 돌아갑니다.";
+          setTimeout(function(){
+              location.href="/logout";
+          },3000);
+      })
+
+      yesBtnExit.addEventListener('click',(event)=>{
+          h22.remove();
+          yesBtnExit.remove();
+          noBtnExit.remove();
+
+          lines_exit.innerHTML="탈퇴 처리 되었습니다. 3초 후 로그인 페이지로 돌아갑니다.";
+          setTimeout(function(){
+              location.href="/remove";
+          },3000);
+      })
+
+      //페이스북 로그인 시 url 끝에 생기는 '#_=_'를 제거
+    if (window.location.hash && window.location.hash == '#_=_') { 
+         history.pushState("", document.title, window.location.pathname + window.location.search);
+    }
+
+
+
 
         preview.addEventListener('mouseover', () => {
             modal.style.display = 'block';

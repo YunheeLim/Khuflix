@@ -10,23 +10,29 @@
 <body>
     <header>
         <nav class="navBar">
-        <h1 class="title" onclick="location.href='/main'">KHUFLIX</h1>
-        <div class="In_navbar">
-            <button class="btn">홈</button>
-            <button class="btn">TV 프로그램</button>
-            <button class="btn">영화</button>
-            <button class="btn">NEW! 요즘 대세 콘텐츠</button>
-            <button class="btn">내가 찜한 콘텐츠</button>
-            <!--검색 기능 -->
-            <form action="/search" method="post">
-            <div class="btn_right">검색  <input type="text" placeholder="검색어를 입력하세요!" name="keyword" id="search" 
-                onKeypress="javascript:if(event.keyCode==13) {location.href='search_page.html'}"
-                onfocus="this.placeholder=''"
-                onblur="this.placeholder='검색어를 입력하세요!'"
-                autocomplete="off" /></div>
-            </form>
+            <div class="nav_left">
+                <div class="KHUFLIX">
+                    <div class="in_logo"><img class="title" src="/images/KHUFLIX.png" onclick="location.href='/main'"></div>
+                </div>
+                <div class="nav_menu">
+                    <ul class="In_navbar">
+                        <a class="menu page" href="/main">홈</a>
+                        <a class="menu" href="/TV_list">TV 프로그램</a>
+                        <a class="menu" href="/movie_list">영화</a>
+                        <a class="menu" href="/like">내가 찜한 콘텐츠</a>
+                        <form action="/search" method="post">
+                            <div class="btn_right">검색  <input type="text" placeholder="검색어를 입력하세요!" name="keyword" id="search" 
+                                onKeypress="javascript:if(event.keyCode==13) {location.href='search_page.html'}"
+                                onfocus="this.placeholder=''"
+                                onblur="this.placeholder='검색어를 입력하세요!'"
+                                autocomplete="off" />
+                            </div>
+                        </form>   
+                    </ul>
+                </div>
+            </div>
         </div>
-        </nav>
+    </nav>
     </header>
     <%if(result =='true_for_title'){%> <!--제목으로 검색-->
         <div class="results_display">

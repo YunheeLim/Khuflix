@@ -10,29 +10,62 @@ body{
     font-family: 'roboto',sans-serif;
 }
 .navBar{
-    position:fixed;
+    position: fixed;
     align-items: center;
-    display:flex;
-    background-color: black;
+    display: flex;
+    justify-content: space-between;
     width: 100%;
-    height: 10%;
-}
-
-.title{
-    color: red;
-    float:left;
-    margin-right:30px;
-    margin-left:4%;
-}
-
-.btn{
-    background-color: black;
-    color:whitesmoke;
-    border: 0cm;
+    height: 8%;
+    background: linear-gradient(to bottom,rgba(0,0,0,.7) 10%,rgba(0,0,0,0));
+  }
+  
+  /* ----------- */
+  .nav_left{
+    display: flex;
+    width: 50%;
+    padding-left: 3.3%;
+  }
+  
+  .KHUFLIX{
     float: left;
-    margin-left:7px;
-    size: 14px;
-}
+    width: 15%;
+    display: table;
+  }
+  .in_logo{
+    padding-top: 3px;
+    display: table-cell;
+    vertical-align: middle;
+  }
+  .nav_menu{
+    float: right;
+    width: 80;
+  }
+  .title{
+    width: 75%;
+    min-width: 60px;
+    height: auto;
+    margin-left: 5%;
+  }
+  
+  .In_navbar{
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 5px;
+  }
+  .menu{
+    font-size: 15px;
+    color: #E5E5E5;
+    word-spacing: -2px;
+    text-decoration: none;
+    padding: 0px 10px 0px 0px
+  }
+  .page{
+    color: #FFFFFF;
+  }
+  
 .btn_right{
     background-color: black;
     color:whitesmoke;
@@ -63,9 +96,8 @@ body{
     height:420px;
     position:absolute;
     left:50%;
-    top:50%;
-    margin-top:300px;
-    margin-left:-220px;
+    transform: translateX(-50%);
+    margin-top: 230px;
     color:whitesmoke;
 }
 
@@ -74,9 +106,9 @@ body{
     height:420px;
     position:absolute;
     left:50%;
-    top:50%;
-    margin-top:300px;
-    margin-left:-220px;
+    transform: translateX(-50%);
+    margin-top: 230px;
+    color:whitesmoke;
 }
 
 .results{
