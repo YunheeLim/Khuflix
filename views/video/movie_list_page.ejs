@@ -20,7 +20,7 @@
 <% videos.forEach((video)=>{%> 
     <div class="container">
         <div class="img_container">
-            <img class="results" src="/images/thumb/<%=video.title%>_thumb.jpg" onclick="location.href='/detail/<%=video.title%>'">
+            <img class="results" src="/images/thumb/<%=video.title%>_thumb.jpg" onclick="location.href='/detail?title=<%=video.title%>'">
         </div>
         <p><%=video.title%></p>
     </div>  
