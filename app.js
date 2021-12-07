@@ -25,7 +25,7 @@ app.use(session({
 	secret: 'keyboard cat',
 	resave: false,
 	saveUninitialized: true,
-  cookie:{maxAge:24 * 60 * 60 * 1000} //쿠키 하루동안 유지
+  cookie:{maxAge:4 * 60 * 60 * 1000} //쿠키 4시간 동안 유지
 }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended : false }));

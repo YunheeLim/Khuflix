@@ -54,7 +54,7 @@ router.get('/main', function(req, res){
          function get_history(random_video, videos){
             Users.findById(req.session._id, 'name history',(err,user)=>{
                 if(err) res.send('get_history 에러');
-                res.render('login/main_page(ing)',{random_video:random_video, videos:videos, user:user}); //얻은 정보들을 main page에 전달
+                res.render('login/main_page',{random_video:random_video, videos:videos, user:user}); //얻은 정보들을 main page에 전달
             });
          };
     }
@@ -72,11 +72,13 @@ router.post('/signup', function(req, res){
     var userId = req.body.id;
     var userName = userId.split('@')[0]; //이메일 앞부분을 사용자 이름으로 저장
     var userPw = req.body.pw;
-    //console.log(userId, userName, userPw);
     var new_user = new Users({name:userName,id:userId,pw:userPw}); //새로운 회원 저장을 위한 객체생성
     new_user.save(function(err){ //새로운 회원 데이터베이스에 저장
         if(err) res.status(500).send('회원가입 에러: 이메일 칸을 채웠는지 확인해주세요');
-        else res.redirect('/login'); //회원가입 성공시 로그인페이지로
+        else {
+            console.log('[회원가입] ', new_user._doc);
+            res.redirect('/login');//회원가입 성공시 로그인페이지로
+        } 
     });
 });
 
@@ -86,7 +88,7 @@ router.get('/login',function(req, res){
     res.render('login/login_page', {remember_Id:remember_Id}); //first_page에서 입력받은 id(email)를 login_page에 전달
 })
 
-//아이디, 비밀번호 데이터 받아서 일치하는지 체크
+//로그인 시 아이디, 비밀번호 데이터 받아서 일치하는지 체크
 router.post('/login', function(req,res) {
     if(req.body.id == null) res.send('아이디를 입력해주세요');
 	Users.findOne({ id: req.body.id}, (err, user) => { //회원인지 확인
@@ -98,6 +100,7 @@ router.post('/login', function(req,res) {
                     req.session._id = user._id.toString()
                     req.session.userId = user.id;
                     req.session.userName = user.id.split('@')[0];
+                    console.log('[로그인] ', user._doc);
                     req.session.save((err)=>{if(err) console.log("세션 저장 실패");}); //일반 로그인 세션저장
                     res.redirect('/main'); //메인페이지로
                 }else{ //비밀번호가 틀렸을 경우
@@ -117,6 +120,7 @@ router.get('/loginFail', function(req, res){
 });
 
 
+//https://www.passportjs.org/ 참조하였습니다.
 //카카오 회원가입 및 로그인
 passport.use('kakao-login', new kakaoStrategy({ 
     clientID: config.kakao.clientID, 
@@ -126,6 +130,7 @@ passport.use('kakao-login', new kakaoStrategy({
     Users.findOne({ id : profile.id}, (err,user)=>{
        if(err) res.status(500).send('카카오 로그인 에러');
        else if(user) { //이미 회원일 경우
+            console.log('[카카오 로그인] ', user._doc);
             return done(null, user);
     }
        else{ //회원이 아닐 경우 데이터베이스에 저장
@@ -134,6 +139,7 @@ passport.use('kakao-login', new kakaoStrategy({
                name: profile.username
            });
            new_user.save((user)=>{
+                console.log('[카카오 회원가입] ', user._doc);
                return done(null, user);
            });
        }
@@ -157,6 +163,7 @@ passport.use('naver-login', new naverStrategy({
     Users.findOne({ id : profile.emails[0].value}, (err,user)=>{
        if(err) res.status(500).send('네이버 로그인 에러');
        else if(user) {
+            console.log('[네이버 로그인] ', user._doc);
             return done(null, user);
         }
        else{
@@ -165,6 +172,7 @@ passport.use('naver-login', new naverStrategy({
                name: userName 
            });
            new_user.save((user)=>{
+                console.log('[네이버 회원가입] ', user._doc);
                return done(null, user);
            });
        }
@@ -186,6 +194,7 @@ passport.use('facebook-login', new facebookStrategy({
     Users.findOne({ id : profile.id}, (err,user)=>{
        if(err) res.status(500).send('페이스북 로그인 에러');
        else if(user) {
+            console.log('[페이스북 로그인] ', user._doc)
             return done(null, user);
         }
        else{
@@ -194,6 +203,7 @@ passport.use('facebook-login', new facebookStrategy({
                name: profile.displayName
            });
            new_user.save((user)=>{
+                console.log('[페이스북 회원가입] ', user._doc)
                return done(null, user);
            });
        }
@@ -225,6 +235,7 @@ passport.deserializeUser(function(req, user, done) {
 //로그아웃
 router.get('/logout', function(req, res){
     if(req.session.is_logined){
+        console.log('[로그아웃] ', req.session.userName);
         req.sessionlis_logined = false;
         req.session.destroy((err)=>{ //세션제거
             if(err) throw err;
@@ -242,6 +253,7 @@ router.get('/remove', function(req, res){
             if(err){
                 res.status(500).send('탈퇴 에러');
             }else{
+                console.log('[회원탈퇴] ', req.session.userName);
                 req.session.is_logined = false;
                 req.session.destroy((err)=>{ //세션제거
                     if(err) throw err;

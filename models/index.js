@@ -18,7 +18,7 @@ var VideoSchema = new mongoose.Schema({
     feature: String,
     genre: String,
     ost: [{song: String, singer: String, ost_src: String}],
-    episode: [{time: Number, epi_content: String, epi_src: String}],
+    episode: [{time: Number, epi_content: String, epi_src: String, epi_title: String}],
     type: String, //유튜브 동영상인지 오리지날 동영상인지
     category: String
 });

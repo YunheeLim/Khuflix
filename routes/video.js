@@ -13,7 +13,7 @@ router.get('/search', function(req, res){
 //동영상 검색
 router.post('/search', function(req, res){
     var keyword = req.body.keyword;
-   // console.log('keyword:' + keyword);
+    console.log('keyword:' + keyword);
     if(keyword =='') res.render('video/search_page', {result:false}); //검색어 없이 검색했을 경우
     else{
     Videos.findOne({title:keyword}, (err, video)=>{
@@ -118,10 +118,9 @@ router.get('/like', function(req, res){
                 res.render('video/like_page',{user:user});
             }
         });
-    }else if(req.session.is_logined==false || req.session.is_logined==undefined){
+    }else if(req.session.is_logined==false || req.session.is_logined==undefined){ //로그인 안하면 접근 못하도록 막기
         res.send('로그인 해주세요');
     }
-
 });
 
 
