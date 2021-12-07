@@ -9,7 +9,54 @@ Create similar service to Netflix with Node js
 1. Frontend : Html, CSS, Vanilla Javascript, ejs
 2. Backend : Node.js
 3. Database : MongoDB
-4. AWS : EC2, S3
+4. AWS : EC2
+
+# Prerequisit
+node v16.X
+npm 8.x
+
+## Required File
+위 저장소를 클론한 후 config/secret.js 파일의 빈칸을 채워주세요. 내용은 다음과 같습니다.
+```
+module.exports={
+    'mongoDB':{
+        'password':'***********',
+        'local_URL':'mongodb://localhost:27017/yourDBname'
+    },
+    'naver':{
+        'clientID':'Yours',
+        'clientSecret':'Yours',
+        'callbackURL':'http://localhost:4000/auth/naver/callback'
+    },
+    'kakao':{
+        'clientID': 'Yours',
+        'callbackURL': 'http://localhost:4000/auth/kakao/callback'
+    },
+    'facebook':{
+        'clientID': 'Yours',
+        'clientSecret': 'Yours',
+        'callbackURL':'http://localhost:4000/auth/facebook/callback'
+    }
+}
+```
+
+
+## Install
+npm insatll
+
+## Run program
+npm start
+포트번호는 4000입니다.
+
+## Reference links
+W3school
+Mozilla
+Passport JS
+Naver Developer
+Kakao Developer
+Facebook Developer
+Mongoose
+AWS
 
 ## Pages
 - First
@@ -23,7 +70,7 @@ Create similar service to Netflix with Node js
 - Like
 
 ## © License
-MIT License Copyright(c) [Sunha Park]
+- [x]MIT License Copyright(c) [Sunha Park]
 MIT License Copyright(c) [Ahyoung Lee]
 MIT License Copyright(c) [Yunhui Lim]
 
