@@ -22,7 +22,7 @@
         <nav class="navBar">
             <div class="nav_left">
                 <div class="KHUFLIX">
-                    <div class="in_logo"><img class="title" src="/images/KHUFLIX.png" onclick="location.href='/main'"></div>
+                    <div class="in_logo"><img class="title" src="/images/KHUFLIX.PNG" onclick="location.href='/main'"></div>
                 </div>
                 <div class="nav_menu">
                     <ul class="In_navbar">
@@ -41,7 +41,7 @@
                         <img class="acc" src="/images/account.png">
                         <ul class="account sub"> 
                             <li class="acc_li" style="font-weight: 600; color: #8fb6ff;"><%=user.name%></li>
-                            <li class="account s_li" onclick="location.href='/like'"><p>내가 찜한 콘텐츠</p></li>
+                            <li class="account s_li" href=""><p>내가 찜한 콘텐츠</p></li>
                             <li class="account s_li logout"><p>로그아웃</p></li>
                             <li class="account s_li exit" onclick=""><p>회원탈퇴</p></li>
                         </ul>
@@ -152,31 +152,20 @@
                 <% user.history.forEach((video)=>{%>
                     <img class="thumb" src="/images/thumb/<%=video.title%><%=video.episode%>_thumb.jpg" width="100px" height="70px" alt="" onclick="location.href='/streaming/<%=video.title%>/<%=video.episode%>'">
                 <%});%>-->
-                
-                <ul class="slidelist">
-                    <li>
-                        <a>
-                            <label for="slide03" class="left"></label>
-                            <% user.history.forEach((video)=>{%>
-                                <img class="thumb" src="/images/thumb/<%=video.title%><%=video.episode%>_thumb.jpg" width="341px" height="139px" alt="" onclick="location.href='/streaming/<%=video.title%>/<%=video.episode%>'">
-                                <%});%>
-                            <label for="slide02" class="right"></label>
-                        </a>
-                    </li>
-                    <li>
-                        <a>
-                            <label for="slide01" class="left"></label>
-                            <label for="slide03" class="right"></label>
-                        </a>
-                    </li>
-                    <li>
-                        <a>
-                            <label for="slide02" class="left"></label>
-                            <label for="slide01" class="right"></label>
-                        </a>
-                    </li>
+
+                <div class="content">
+                    <ul>
+                        <li>
+                            <a>
+                                <% user.history.forEach((video)=>{%>
+                                    <img class="watched" src="/images/thumb/<%=video.title%>_thumb.jpg" onmouseenter="zoomIn(event)" onmouseleave="zoomOut(event)" onclick="location.href='/streaming/<%=video.title%>/<%=video.episode%>'">
+                                    <%});%>
+                            </a>
+                        </li>
+                    </ul>
                     
-                </ul>
+                </div>
+
             <%}%>
 
         </div>
@@ -243,7 +232,6 @@
     
                     <div class="conbox con1">
                         <div class="episode">
-                            <!-- <div class="es"><h3 id="es">회차</h3></div> -->
                             <div class="epi first_e">
                                 <div class="e_number out_box"><div class="e_num in_box">1</div></div>
                                 <div class="thumbnail out_box"><div class="in_box"><img class="thumb" src="/images/1-1.jpg"></div></div>
@@ -271,6 +259,7 @@
                                 <div class="blank"></div>
                             </div>
                         </div>
+                        
                     </div>
                     <div class="conbox con2">
                         <div class="ostpart">

@@ -41,7 +41,6 @@ header{
   padding-top: 3px;
   display: table-cell;
   vertical-align: middle;
-  cursor: pointer;
 }
 .nav_menu{
   float: right;
@@ -185,7 +184,8 @@ text-shadow: 0px 0px 1px #FFF;
   top: -245px;
 }
 .c2{
-  top: -400px;
+  position: absolute;
+  top: 67%;
 }
 
 .no_history{
@@ -198,6 +198,7 @@ text-shadow: 0px 0px 1px #FFF;
 /* ------slide------ */
 
 .section{
+  width: 100%;
   z-index: 90;
 }
 .section input[id*="slide"] {
@@ -240,7 +241,7 @@ text-shadow: 0px 0px 1px #FFF;
 
 .section .slidelist label {
   position: absolute;
-  overflow: visible;
+  /* overflow: visible; */
   z-index: 10;
   top: 50%;
   transform: translateY(-50%);
@@ -290,7 +291,7 @@ text-shadow: 0px 0px 1px #FFF;
   left: 10%;
   transform: translate(-10%, -76%);
   max-width: 350px;
-  z-index: 5;
+  z-index: 10;
 }
 .container{
   max-width: 600px;
@@ -751,4 +752,43 @@ input[id="tab03"]:checked ~ .con3 {display: block;}
   font-weight: bold;
   border-radius: 15px;
   box-shadow: 1px 1px 1px 1px gray;
+}
+
+
+/* ------------시청기록------------ */
+
+.content{
+  width: 100%;
+  position: relative;
+  margin-top: -350px;
+  margin-bottom: 100px;
+  /* padding: 0px 20px; */
+  /* margin: 0 auto;
+  margin-top: -330px;
+  margin-bottom: 100px;
+  padding: 0px 15px; */
+  list-style: none;
+  display: flex;
+  /* text-align: center; */
+}
+
+.content > ul {
+  width: 100%;
+  /* background-color: pink; */
+}
+.content > ul > li{
+  padding-left: 2.4%;
+  padding-right: 1.2%;
+}
+.content > ul > li > a{
+  width: 100%;
+}
+.content > li > a > img{
+  float: left;
+}
+.watched{
+  width: 19.21%;
+  border-radius: 4px;
+  padding: 0 0.1vw;
+  cursor: pointer;
 }
