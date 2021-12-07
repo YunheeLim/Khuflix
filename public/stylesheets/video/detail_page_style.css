@@ -62,6 +62,10 @@ body::-webkit-scrollbar { display:none; } */
   border-top-right-radius: 7px;
 }
 
+.video{
+  width:100%
+}
+
 .logo{
   width: 340px;
   margin: 0px 0px 18px;
@@ -317,9 +321,11 @@ input[id="tab03"]:checked ~ .con3 {display: block;}
   border-bottom: 1px solid #404040;
   margin: 0 auto;
   display: flex;
+  cursor: pointer;
 }
 .first_e{
   background-color: #333333;
+  cursor: pointer;
 }
 
 .out_box{

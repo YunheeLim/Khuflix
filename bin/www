@@ -9,6 +9,9 @@ var http = require('http');
 var mongoose = require('mongoose');
 var config = require('../config/secret');
 
+//로컬 몽고 데이터베이스
+//var url = config.mongoDB.local_URL;
+
 //몽고 atlas 데이터베이스
 var url = 'mongodb+srv://admin:'+ config.mongoDB.password + '@cluster0.jhkhg.mongodb.net/KhuDB?retryWrites=true&w=majority';
 
