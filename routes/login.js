@@ -10,7 +10,7 @@ var model = require('../models');//모델 스키마 가져오기
 const { session } = require('passport');
 var Users = model.Users; //사용자 객체 생성을 위한 오브젝트
 var Videos = model.Videos; //비디오 객체 생성을 위한 오브젝트
-var remember_Id; //입력받은 아이디(이메일)를 frontEnd의 placeholder에 전달하는 변수
+//var remember_Id; //입력받은 아이디(이메일)를 frontEnd의 placeholder에 전달하는 변수
 
 //첫페이지
 //first_page 렌더링
@@ -18,9 +18,9 @@ router.get('/first', function(req, res){
     res.render('login/first_page');
 })
 
-// 아이디(이메일 주소) 데이터 저장
+// 첫페이지에서 아이디(이메일 주소) 데이터 저장
 router.post('/first', function(req, res){
-    remember_Id = req.body.id;
+    req.session.remember_Id = req.body.id;
     Users.findOne({ id: req.body.id}, (err, user) =>{
         if(user) res.redirect('/login'); //회원일 경우 로그인 페이지로
         else res.redirect('/signup'); //회원이 아닐 경우 회원가입 페이지로
@@ -63,12 +63,11 @@ router.get('/main', function(req, res){
 //회원가입
 //signup_page 렌더링
 router.get('/signup', function(req, res){
-    res.render('login/signup_page', {remember_Id:remember_Id});
-})
+    res.render('login/signup_page', {remember_Id:req.session.remember_Id});
+});
 
 //아이디,비밀번호 데이터 저장
 router.post('/signup', function(req, res){
-    remember_Id = req.body.id;
     var userId = req.body.id;
     var userName = userId.split('@')[0]; //이메일 앞부분을 사용자 이름으로 저장
     var userPw = req.body.pw;
@@ -85,7 +84,7 @@ router.post('/signup', function(req, res){
 //일반 로그인
 //login_page 렌더링
 router.get('/login',function(req, res){
-    res.render('login/login_page', {remember_Id:remember_Id}); //first_page에서 입력받은 id(email)를 login_page에 전달
+    res.render('login/login_page', {remember_Id:req.session.remember_Id}); //first_page에서 입력받은 id(email)를 login_page에 전달
 })
 
 //로그인 시 아이디, 비밀번호 데이터 받아서 일치하는지 체크

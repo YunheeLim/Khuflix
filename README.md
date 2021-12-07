@@ -12,7 +12,7 @@ Create similar service to Netflix with Node js
 3. Database : MongoDB
 4. AWS : EC2
 
-# Prerequisit
+## Prerequisit
 node v16.X<br>
 npm 8.x
 
@@ -40,8 +40,9 @@ module.exports={
     }
 }
 ```
-동영상을 재생시키고 싶다면 데이터 베이스에 아래와 같은 형식의 동영상 데이터를 추가해주세요.<br>
-예시
+동영상을 재생시키고 싶다면 mongoDB에 videos 콜렉션 생성 후, 아래와 같은 형식의 동영상 데이터를 추가해주세요.<br>
+(유튜브 동영상이 아닌 오리지날 동영상의 경우 public/video에 동영상을 직접 추가해야합니다.)<br>
+<p>예시</p>
 ```
 {
     "title":"지옥",
