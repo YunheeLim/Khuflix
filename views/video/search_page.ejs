@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KhuFlix</title>
+    <link rel="icon" href="/images/favicon.png">
     <link rel="stylesheet" href="/stylesheets/video/search_page_style.css">
 </head>
 <body>
@@ -34,31 +35,83 @@
         </div>
     </nav>
     </header>
-    <%if(result =='true_for_title'){%> <!--제목으로 검색-->
-        <div class="results_display">
-            <img class="results" src="/images/thumb/<%=video.title%>_thumb.jpg" onclick="location.href='/detail?title=<%=video.title%>'">
-            <p><%=video.title%></p>
-        </div>
-    <%}else if(result=='true_for_contents'){%> <!--내용으로 검색-->
-        <div class="results_display">
-        <% result_videos.forEach((video)=>{%> 
-            <img class="results" src="/images/thumb/<%=video.title%>_thumb.jpg" onclick="location.href='/detail?title=<%=video.title%>'">
-            <p><%=video.title%></p>
-        <%});%>
-        </div>
-    <%}else if(result===false){%> <!--검색 실패-->
-        <div class="noReturn">
-            <h3>입력하신 검색어와 일치하는 결과가 없습니다 :(</h3>
-            <br>
-            <p> <b>추천 검색어 : </b> </p>
-            <br>
-            <p>
-                * 다른 키워드를 입력해보세요 <br>
-                * TV 프로그램이나 영화를 찾고 있으신가요? <br>
-                * 영화 제목, TV 프로그램 제목, 또는 배우나 감독의 이름으로 검색해 보세요. <br>
-                * 코미디, 로맨스, 스포츠 또는 드라마와 같은 장르명으로 검색해보세요. 
-            </p>
-        </div>
-    <%}%>
+    <div class="wrap">
+        <%if(result =='true_for_title'){%> <!--제목으로 검색-->
+            <!-- 1안 -->
+            <!-- <div class="results_display">
+                <img class="results" src="/images/thumb/<%=video.title%>_thumb.jpg" onclick="location.href='/detail?title=<%=video.title%>'">
+                <p><%=video.title%></p>
+            </div> -->
+
+            <!-- 2안(list ver.) -->
+            <div class="watchedlist">
+                <ul>
+                    <li>
+                        <a href="">
+                            <div class="screen">
+                                <img src="/images/thumb/<%=video.title%>_thumb.jpg">
+                            </div>
+                            <div>
+                                <h3><%=video.title%></h3>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+        <%}else if(result=='true_for_contents'){%> <!--내용으로 검색-->
+            <!-- 1안 -->
+            <!-- <div class="results_display">
+            <% result_videos.forEach((video)=>{%> 
+                <img class="results" src="/images/thumb/<%=video.title%>_thumb.jpg" onclick="location.href='/detail?title=<%=video.title%>'">
+                <p><%=video.title%></p>
+            <%});%>
+            </div> -->
+    
+            <!-- 2안(list ver.) -->
+            <div class="watchedlist">
+                <ul>
+                    <% result_videos.forEach((video)=>{%>
+                    <li>
+                        <a href="">
+                            <div class="screen">
+                                <img src="/images/thumb/<%=video.title%>_thumb.jpg" onmouseenter="zoomIn(event)" onmouseleave="zoomOut(event)">
+                            </div>
+                            <div>
+                                <h3><%=video.title%></h3>
+                            </div>
+                        </a>
+                    </li>
+                    <%});%>
+                </ul>
+            </div>
+    
+        <%}else if(result===false){%> <!--검색 실패-->
+            <div class="noReturn">
+                <h3>입력하신 검색어와 일치하는 결과가 없습니다 :(</h3>
+                <br>
+                <p> <b>추천 검색어 : </b> </p>
+                <br>
+                <p>
+                    * 다른 키워드를 입력해보세요 <br>
+                    * TV 프로그램이나 영화를 찾고 있으신가요? <br>
+                    * 영화 제목, TV 프로그램 제목, 또는 배우나 감독의 이름으로 검색해 보세요. <br>
+                    * 코미디, 로맨스, 스포츠 또는 드라마와 같은 장르명으로 검색해보세요. 
+                </p>
+            </div>
+        <%}%>
+    </div>
+    <script>
+        function zoomIn(event) {
+            event.target.style.transform = "scale(1.02)";
+            event.target.style.zIndex = 1;
+            event.target.style.transition = "all 0.2s";
+        }
+        function zoomOut(event) {
+            event.target.style.transform = "scale(1)";
+            event.target.style.zIndex = 0;
+            event.target.style.transition = "all 0.5s";
+        }
+    </script>
 </body>
 </html>

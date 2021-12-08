@@ -862,12 +862,7 @@ input[id="tab03"]:checked ~ .con3 {display: block;}
   width: 100%;
   border-radius: 4px;
 }
-.watchedlist > ul > li > a h3{
-  font-size: 14px;
-  padding-top: 8px;
-  text-align: center;
-  color: #d2d2d2;
-}
+
 .watchedlist > ul > li > a:hover .top{
   bottom: 52%;
 }

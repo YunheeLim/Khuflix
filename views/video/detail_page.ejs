@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title><%=target_video.title%></title>
+        <link rel="icon" href="/images/favicon.png">
         <link rel="stylesheet" href="/stylesheets/video/detail_page_style.css">
         <script src="https://kit.fontawesome.com/11643b24f4.js" crossorigin="anonymous"></script>
         <!--nodejs로부터 css에도 데이터 넘겨주기 위해 inline방식 사용-->
@@ -11,15 +12,15 @@
               .playpart{
                     display: block;
                     margin:0px auto;
-                    margin-top: 10px;
+                    /* margin-top: 10px; */
                     width: 850px;
                     /* height: 480px; */
                     /* object-fit: cover;
                     object-position: top; */
                     background : linear-gradient(to top, #181818, transparent 70%), url('/images/thumb/<%=target_video.title%>_thumb.jpg');
                     background-size: cover;
-                    border-top-left-radius: 5px;
-                    border-top-right-radius: 5px;
+                    border-top-left-radius: 8px;
+                    border-top-right-radius: 8px;
                 }
         </style>
     </head>
@@ -29,7 +30,7 @@
             <div style="position: relative;">
                 <div style="position: absolute; top: 30px; right: 35px;">
                     <button class="circle close" onclick="location.href='/main'"><i class="fas fa-times"></i></button>
-                </div>
+                </div class="myvideo">
                     <%if(target_video.type == 'original'){%> <!--original동영상이면 이미지 띄워주기-->
                         <img class="video" src="/images/thumb/<%=target_video.title%>_thumb.jpg" ></img>
                     <%}else if(target_video.type == 'youtube'){%> <!--youtube동영상이라면 티저영상 띄워주기-->
@@ -173,6 +174,7 @@
                             </div>
                         </div>
                         <%}}%>
+                        <div class="space"></div>
                         <!--
                         <div class="track">
                             <div class="number">3</div>

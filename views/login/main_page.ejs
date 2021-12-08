@@ -167,7 +167,7 @@
                     <ul>
                         <%for(var i = user.history.length-1; i >= user.history.length-5; i--){%>
                         <li>
-                            <a href="">
+                            <a href="/streaming/<%=user.history[i].title%>/<%=user.history[i].episode%>">
                                 <div class="screen">
                                     <div class="top"><%=user.history[i].episode%>화</div>
                                     <img src="/images/thumb/<%=user.history[i].title%>_thumb.jpg">
@@ -198,7 +198,7 @@
                     <ul>
                         <%for(var i = user.history.length-1; i >= 0; i--){%>
                         <li>
-                            <a href="">
+                            <a href="/streaming/<%=user.history[i].title%>/<%=user.history[i].episode%>">
                                 <div class="screen">
                                     <div class="top"><%=user.history[i].episode%>화</div>
                                     <img src="/images/thumb/<%=user.history[i].title%>_thumb.jpg">
