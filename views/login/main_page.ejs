@@ -28,7 +28,7 @@
                         <a class="menu page" href="/main">홈</a>
                         <a class="menu" href="/TV_list">TV 프로그램</a>
                         <a class="menu" href="/movie_list">영화</a>
-                        <a class="menu" href="/like">내가 찜한 콘텐츠</a>
+                        <a class="menu" href="/like" >내가 찜한 콘텐츠</a>
                     </ul>
                 </div>
             </div>
@@ -40,7 +40,7 @@
                         <img class="acc" src="/images/account.png">
                         <ul class="account sub"> 
                             <li class="acc_li" style="font-weight: 600; color: #8fb6ff;"><%=user.name%></li>
-                            <li class="account s_li" href="/like"><p>내가 찜한 콘텐츠</p></li>
+                            <li class="account s_li" onclick="location.href='/like'"><p>내가 찜한 콘텐츠</p></li>
                             <li class="account s_li logout"><p>로그아웃</p></li>
                             <li class="account s_li exit" onclick=""><p>회원탈퇴</p></li>
                         </ul>
@@ -97,8 +97,8 @@
                                         <section class="item item-b">
                                             <div class="container2">
                                                 <div class="buttons">
-                                                    <button class="circle play" href='/streaming/슬기로운 의사생활/1'><i class="fas fa-play"></i></button>
-                                                    <button class="circle"><i class="fas fa-check"></i></button>
+                                                    <button class="circle play" onclick="location.href='/streaming/슬기로운 의사생활/1'"><i class="fas fa-play"></i></button>
+                                                    <button class="circle" onclick="location.href='/like/슬기로운 의사생활'"><i class="fas fa-check"></i></button>
                                                     <button class="circle"><i class="far fa-thumbs-up"></i></button>
                                                     <button class="circle down"><i class="far fa-thumbs-down"></i></button>
                                                     <button class="circle etc"><i class="fas fa-chevron-down"></i></button>
@@ -142,7 +142,7 @@
                 </ul>
             </div>
 
-            <div class="contents c2"><%=user.name%>님이 시청중인 콘텐츠 <span style="color: rgb(104, 104, 104); font-size: 14px;">최근 5개</span></div>
+            <div class="contents c2"><%=user.name%>님이 시청 중인 콘텐츠 <span style="color: rgb(104, 104, 104); font-size: 14px;">최근 5개</span></div>
             <%if(user.history.length==0){%> <!--히스토리가 없을 때-->
                 <div class="content">
                         <div class="no_history"style="color:white;"><h1>아직 본 영상이 없어요 :(</h1></div>   
@@ -169,7 +169,7 @@
                         <li>
                             <a href="">
                                 <div class="screen">
-                                    <div class="top">배고파</div>
+                                    <div class="top"><%=user.history[i].episode%>화</div>
                                     <img src="/images/thumb/<%=user.history[i].title%>_thumb.jpg">
                                 </div>
                             </a>
@@ -200,7 +200,7 @@
                         <li>
                             <a href="">
                                 <div class="screen">
-                                    <div class="top">배고파</div>
+                                    <div class="top"><%=user.history[i].episode%>화</div>
                                     <img src="/images/thumb/<%=user.history[i].title%>_thumb.jpg">
                                 </div>
                             </a>
@@ -226,8 +226,8 @@
                     <div style="position: absolute; top: 230px; left: 50px;">
                         <img class="v_logo" src="/images/logo/슬기로운 의사생활_logo.png"></img>
                         <div class="v_buttons">
-                            <button class="v_play"><i class="fas fa-play playing m2"></i> 재생</button>
-                            <button class="v_circle" onclick="location.href='/streaming/like/슬기로운 의사생활'"><i class="fas fa-check m2"></i></button>
+                            <button class="v_play" onclick="location.href='/streaming/슬기로운 의사생활/1'"><i class="fas fa-play playing m2"></i> 재생</button>
+                            <button class="v_circle" onclick="location.href='/like/슬기로운 의사생활'"><i class="fas fa-check m2"></i></button>
                             <button class="v_circle"><i class="far fa-thumbs-up m2"></i></button>
                             <button class="v_circle"><i class="far fa-thumbs-down m2"></i></button>
                             <!-- <button class="circle" id="mute"><i class="fas fa-volume-mute"></i></button> -->
@@ -276,7 +276,7 @@
                         <div class="episode">
                             <div class="epi first_e" onclick="location.href='/streaming/슬기로운 의사생활/1'">
                                 <div class="e_number out_box"><div class="e_num in_box">1</div></div>
-                                <div class="thumbnail out_box"><div class="in_box"><img class="thumb" src="/images/1-1.jpg"></div></div>
+                                <div class="thumbnail out_box"><div class="in_box"><img class="thumb" src="/images/thumb/슬기로운 의사생활1_thumb.jpg"></div></div>
                                 <div class="text">
                                     <div class="e_title">
                                         <div class="story">1화</div>
@@ -289,7 +289,7 @@
                             </div>
                             <div class="epi" onclick="location.href='/streaming/슬기로운 의사생활/2'">
                                 <div class="e_number out_box"><div class="e_num in_box">2</div></div>
-                                <div class="thumbnail out_box"><div class="in_box"><img class="thumb" src="/images/1-2.jpg"></div></div>
+                                <div class="thumbnail out_box"><div class="in_box"><img class="thumb" src="/images/thumb/슬기로운 의사생활2_thumb.jpg"></div></div>
                                 <div class="text">
                                     <div class="e_title">
                                         <div class="story">2화</div>
@@ -297,6 +297,45 @@
                                     </div>
                                     <div class="summary"><p>20년 만에 한 병원에서 만나게 된 친구들. 오늘도 각자 한 사람의 의사로서 최선을 다한다. 
                                         한편, 송화는 환자 차트에서 왜인지 낯설지 않은 이름을 발견하는데...</p></div>
+                                </div>
+                                <div class="blank"></div>
+                            </div>
+                            <div class="epi" onclick="location.href='/streaming/슬기로운 의사생활/2'">
+                                <div class="e_number out_box"><div class="e_num in_box">3</div></div>
+                                <div class="thumbnail out_box"><div class="in_box"><img class="thumb" src="/images/thumb/슬기로운 의사생활3_thumb.jpg"></div></div>
+                                <div class="text">
+                                    <div class="e_title">
+                                        <div class="story">3화</div>
+                                        <div class="time">79분</div>
+                                    </div>
+                                    <div class="summary"><p>뚱~한 표정을 하고 겨우 몇 마디 하는 석형 때문에 민하는 오늘도 답답하기만 하고. 
+                                        홍도와 윤복은 병원 밖에서 송화의 비밀스러운 취미 생활을 알게 되는데...</p></div>
+                                </div>
+                                <div class="blank"></div>
+                            </div>
+                            <div class="epi" onclick="location.href='/streaming/슬기로운 의사생활/2'">
+                                <div class="e_number out_box"><div class="e_num in_box">4</div></div>
+                                <div class="thumbnail out_box"><div class="in_box"><img class="thumb" src="/images/thumb/슬기로운 의사생활4_thumb.jpg"></div></div>
+                                <div class="text">
+                                    <div class="e_title">
+                                        <div class="story">4화</div>
+                                        <div class="time">72분</div>
+                                    </div>
+                                    <div class="summary"><p>겨울은 유독 본인에게만 차가운 정원에게 칭찬 한마디를 기대해보지만, 쉽지 않다. 
+                                        흉부외과에는 새로운 교수가 부임해오고... 오늘도 재학의 24시간은 모자라다.</p></div>
+                                </div>
+                                <div class="blank"></div>
+                            </div>
+                            <div class="epi" onclick="location.href='/streaming/슬기로운 의사생활/2'">
+                                <div class="e_number out_box"><div class="e_num in_box">5</div></div>
+                                <div class="thumbnail out_box"><div class="in_box"><img class="thumb" src="/images/thumb/슬기로운 의사생활5_thumb.jpg"></div></div>
+                                <div class="text">
+                                    <div class="e_title">
+                                        <div class="story">5화</div>
+                                        <div class="time">81분</div>
+                                    </div>
+                                    <div class="summary"><p>대시에 어떤 대답도 없는 익순 때문에 종일 휴대폰만 들여다보는 준완. 
+                                        한편, 정원이 오래 지켜봐 온 환자 상태가 악화되고, 보호자에게 어려운 소식을 전하는데.</p></div>
                                 </div>
                                 <div class="blank"></div>
                             </div>
@@ -329,6 +368,42 @@
                                 <div class="singer">조이 (JOY)</div>
                                 <div class="option">
                                     <a class="music" href=""><iframe width="20" height="20" src="https://www.youtube.com/embed/hoLzH1revMg?controls=0"
+                                        title="YouTube video player" frameborder="0" allow="accelerometer; 
+                                        autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                                    </iframe></a>
+                                    <a class="music" href=""><i class="far fa-heart v_i"></i></a>
+                                </div>
+                            </div>
+                            <div class="track">
+                                <div class="number">3</div>
+                                <div class="o_title">아로하</div>
+                                <div class="singer">조정석</div>
+                                <div class="option">
+                                    <a class="music" href=""><iframe width="20" height="20" src="https://www.youtube.com/embed/3DOkxQ3HDXE?controls=0" 
+                                        title="YouTube video player" frameborder="0" allow="accelerometer; 
+                                        autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                                    </iframe></a>
+                                    <a class="music" href=""><i class="far fa-heart v_i"></i></a>
+                                </div>
+                            </div>
+                            <div class="track">
+                                <div class="number">4</div>
+                                <div class="o_title">화려하지 않은 고백</div>
+                                <div class="singer">규현 (KYUHYUN)</div>
+                                <div class="option">
+                                    <a class="music" href=""><iframe width="20" height="20" src="https://www.youtube.com/embed/ftQF5AbDMLM?controls=0"
+                                        title="YouTube video player" frameborder="0" allow="accelerometer; 
+                                        autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                                    </iframe></a>
+                                    <a class="music" href=""><i class="far fa-heart v_i"></i></a>
+                                </div>
+                            </div>
+                            <div class="track">
+                                <div class="number">5</div>
+                                <div class="o_title">그대 고운 내 사랑</div>
+                                <div class="singer">어반자카파</div>
+                                <div class="option">
+                                    <a class="music" href=""><iframe width="20" height="20" src="https://www.youtube.com/embed/vANdEL9vpjw?controls=0"
                                         title="YouTube video player" frameborder="0" allow="accelerometer; 
                                         autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
                                     </iframe></a>
