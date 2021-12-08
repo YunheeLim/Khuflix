@@ -3,7 +3,7 @@ var router = express.Router();
 var model = require('../models');
 var Users = model.Users;
 var Videos = model.Videos;
-var target_video; //재생하려는 비디오
+//var target_video;
 
 //search_page 렌더링
 router.get('/search', function(req, res){
@@ -39,17 +39,19 @@ router.get('/detail/', function(req, res){
     var video_title = req.query.title;
     Videos.findOne({title:video_title},(err,video)=>{
         if(err) res.send('동영상 찾기 에러');
-        target_video = video._doc;
+        var target_video = video._doc;
         res.render('video/detail_page', {target_video:target_video});
      });    
 });
 
-//찜한 동영상 추가하기
+//찜한 동영상 추가,삭제하기
 router.get('/like/:video_title', function(req, res){
     var video_title = req.params.video_title;
     Users.findOne({id:req.session.userId, 'like.title':video_title},(err,user)=>{
         if(!user){ //찜한 기록에 없으면 추가
             Users.findOneAndUpdate({id:req.session.userId},{$push : {like:{title:video_title}}}).exec();
+        }else if(user){ //찜한 기록에 있으면 삭제
+            Users.findOneAndUpdate({id:req.session.userId},{$pull : {like:{title:video_title}}}).exec();
         }
     });
     res.redirect('/detail?title='+video_title);
@@ -66,6 +68,12 @@ router.get('/streaming/:video_title/:episode', function(req, res){
     Users.findOne({id:req.session.userId, 'history.title':title, 'history.episode':episode},(err,user)=>{
         if(!user){ //시청기록에 없으면 추가
             Users.findOneAndUpdate({id:req.session.userId},{$push : {history:{title:title,episode:episode}}}).exec();
+        }
+        else if(user){ //시청기록에 있다면 가장 최근 순서로 업데이트
+                Users.findOneAndUpdate({id:req.session.userId},{$pull : {history:{title:title,episode:episode}}},(err,result)=>{
+                Users.findOneAndUpdate({id:req.session.userId},{$push : {history:{title:title,episode:episode}}}).exec();
+            });
+            
         }
     });
 

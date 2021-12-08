@@ -9,6 +9,7 @@ var mongoose = require('mongoose');
 
 var loginRouter = require('./routes/login');
 var videoRouter = require('./routes/video');
+var setRouter = require('./routes/set_videos_for_localDB');
 
 var app = express();
 
@@ -35,6 +36,7 @@ app.use('/public', express.static('public'));
 
 app.use('/', loginRouter);
 app.use('/', videoRouter);
+app.use('/', setRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

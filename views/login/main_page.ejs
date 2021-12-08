@@ -8,11 +8,10 @@
     <link rel="icon" href="/images/favicon.png">
     <link rel="stylesheet" href="/stylesheets/login/main_page_style.css">
     <script src="https://kit.fontawesome.com/11643b24f4.js" crossorigin="anonymous"></script>
-    <!--nodejs로부터 css에도 데이터 넘겨주기 위해 inline방식 사용-->
     <style> 
     .mainpart{
         display: block;
-        background : linear-gradient(to top, #000000, transparent 80%), url('/images/random/스타트업_random.jpg'); /*아직 데이터 안채워져서 랜덤동영상 임의로fix*/
+        background : linear-gradient(to top, #000000, transparent 80%), url('/images/random/스타트업_random.jpg');
         background-size: cover;
         }
     </style>
@@ -41,7 +40,7 @@
                         <img class="acc" src="/images/account.png">
                         <ul class="account sub"> 
                             <li class="acc_li" style="font-weight: 600; color: #8fb6ff;"><%=user.name%></li>
-                            <li class="account s_li" href=""><p>내가 찜한 콘텐츠</p></li>
+                            <li class="account s_li" href="/like"><p>내가 찜한 콘텐츠</p></li>
                             <li class="account s_li logout"><p>로그아웃</p></li>
                             <li class="account s_li exit" onclick=""><p>회원탈퇴</p></li>
                         </ul>
@@ -98,7 +97,7 @@
                                         <section class="item item-b">
                                             <div class="container2">
                                                 <div class="buttons">
-                                                    <button class="circle play"><i class="fas fa-play"></i></button>
+                                                    <button class="circle play" href='/streaming/슬기로운 의사생활/1'><i class="fas fa-play"></i></button>
                                                     <button class="circle"><i class="fas fa-check"></i></button>
                                                     <button class="circle"><i class="far fa-thumbs-up"></i></button>
                                                     <button class="circle down"><i class="far fa-thumbs-down"></i></button>
@@ -143,29 +142,39 @@
                 </ul>
             </div>
 
-            <div class="contents c2"><%=user.name%>님이 시청중인 콘텐츠</div>
-            <%if(user.history.length==0){%>
-                <h1 class="no_history"style="color:white;">아직 본 영상이 없어요 :(</h1>
-            <%}else{%>
-                <!--히스토리 잘 뜨는지 확인용-->
-                <!-- 
-                <% user.history.forEach((video)=>{%>
-                    <img class="thumb" src="/images/thumb/<%=video.title%><%=video.episode%>_thumb.jpg" width="100px" height="70px" alt="" onclick="location.href='/streaming/<%=video.title%>/<%=video.episode%>'">
-                <%});%>-->
+            <div class="contents c2"><%=user.name%>님이 시청중인 콘텐츠 (최근 5개 내역만 보여집니다.)</div>
+            <%if(user.history.length==0){%> <!--히스토리가 없을 때-->
+                <div class="content">
+                        <div class="no_history"style="color:white;"><h1>아직 본 영상이 없어요 :(</h1></div>   
+                </div>
 
+            <%}else if(user.history.length >4){%> <!--히스토리가 5개 이상일 때-->
                 <div class="content">
                     <ul>
                         <li>
                             <a>
-                                <% user.history.forEach((video)=>{%>
-                                    <img class="watched" src="/images/thumb/<%=video.title%>_thumb.jpg" onmouseenter="zoomIn(event)" onmouseleave="zoomOut(event)" onclick="location.href='/streaming/<%=video.title%>/<%=video.episode%>'">
-                                    <%});%>
+                                <%for(var i = user.history.length-1; i >= user.history.length-5; i--){%>
+                                    <img class="watched" src="/images/thumb/<%=user.history[i].title%>_thumb.jpg" onmouseenter="zoomIn(event)" onmouseleave="zoomOut(event)" onclick="location.href='/streaming/<%=user.history[i].title%>/<%=user.history[i].episode%>'">
+                                <%}%>
                             </a>
                         </li>
                     </ul>
                     
                 </div>
 
+            <%}else{%>
+                <div class="content"> <!--히스토리가 5개 미만일 때-->
+                    <ul>
+                        <li>
+                            <a>
+                                <%for(var i = user.history.length-1; i >= 0; i--){%>
+                                    <img class="watched" src="/images/thumb/<%=user.history[i].title%>_thumb.jpg" onmouseenter="zoomIn(event)" onmouseleave="zoomOut(event)" onclick="location.href='/streaming/<%=user.history[i].title%>/<%=user.history[i].episode%>'">
+                                <%}%>
+                            </a>
+                        </li>
+                    </ul>
+                    
+                </div>
             <%}%>
 
         </div>
@@ -185,7 +194,7 @@
                         <img class="v_logo" src="/images/logo/슬기로운 의사생활_logo.png"></img>
                         <div class="v_buttons">
                             <button class="v_play"><i class="fas fa-play playing m2"></i> 재생</button>
-                            <button class="v_circle"><i class="fas fa-check m2"></i></button>
+                            <button class="v_circle" onclick="location.href='/streaming/like/슬기로운 의사생활'"><i class="fas fa-check m2"></i></button>
                             <button class="v_circle"><i class="far fa-thumbs-up m2"></i></button>
                             <button class="v_circle"><i class="far fa-thumbs-down m2"></i></button>
                             <!-- <button class="circle" id="mute"><i class="fas fa-volume-mute"></i></button> -->
@@ -232,7 +241,7 @@
     
                     <div class="conbox con1">
                         <div class="episode">
-                            <div class="epi first_e">
+                            <div class="epi first_e" onclick="location.href='/streaming/슬기로운 의사생활/1'">
                                 <div class="e_number out_box"><div class="e_num in_box">1</div></div>
                                 <div class="thumbnail out_box"><div class="in_box"><img class="thumb" src="/images/1-1.jpg"></div></div>
                                 <div class="text">
@@ -245,7 +254,7 @@
                                 </div>
                                 <div class="blank"></div>
                             </div>
-                            <div class="epi">
+                            <div class="epi" onclick="location.href='/streaming/슬기로운 의사생활/2'">
                                 <div class="e_number out_box"><div class="e_num in_box">2</div></div>
                                 <div class="thumbnail out_box"><div class="in_box"><img class="thumb" src="/images/1-2.jpg"></div></div>
                                 <div class="text">
@@ -274,7 +283,10 @@
                                 <div class="o_title">Lonely Night</div>
                                 <div class="singer">권진아</div>
                                 <div class="option">
-                                    <a class="music"><i class="fas fa-play v_i"></i></a>
+                                    <a class="music"><iframe width="20" height="20" src="https://www.youtube.com/embed/3JJEAHst96w?controls=0"
+                                        title="YouTube video player" frameborder="0" allow="accelerometer; 
+                                        autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                                    </iframe></i></a>
                                     <a class="music" href=""><i class="far fa-heart v_i"></i></a>
                                 </div>
                             </div>
@@ -283,7 +295,10 @@
                                 <div class="o_title">좋은 사람 있으면 소개시켜줘</div>
                                 <div class="singer">조이 (JOY)</div>
                                 <div class="option">
-                                    <a class="music" href=""><i class="fas fa-play v_i"></i></a>
+                                    <a class="music" href=""><iframe width="20" height="20" src="https://www.youtube.com/embed/hoLzH1revMg?controls=0"
+                                        title="YouTube video player" frameborder="0" allow="accelerometer; 
+                                        autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                                    </iframe></a>
                                     <a class="music" href=""><i class="far fa-heart v_i"></i></a>
                                 </div>
                             </div>
@@ -295,6 +310,15 @@
     </div>	
     
     <script>
+        //브라우저의 뒤로가기 버튼 클릭 시, 페이지 reload
+        window.addEventListener( "pageshow", function ( event ) {
+            var historyTraversal = event.persisted || 
+                                    ( typeof window.performance != "undefined" && 
+                                        window.performance.navigation.type === 2 );
+            if ( historyTraversal ) {
+                window.location.reload();
+            }
+        });
         const modal = document.querySelector('.modal');
         const preview = document.querySelector('.btn-open-popup');
 

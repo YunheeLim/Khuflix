@@ -10,7 +10,7 @@ var model = require('../models');//모델 스키마 가져오기
 const { session } = require('passport');
 var Users = model.Users; //사용자 객체 생성을 위한 오브젝트
 var Videos = model.Videos; //비디오 객체 생성을 위한 오브젝트
-//var remember_Id; //입력받은 아이디(이메일)를 frontEnd의 placeholder에 전달하는 변수
+//var remember_Id; 
 
 //첫페이지
 //first_page 렌더링
