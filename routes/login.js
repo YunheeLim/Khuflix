@@ -90,9 +90,9 @@ router.get('/login',function(req, res){
 //로그인 시 아이디, 비밀번호 데이터 받아서 일치하는지 체크
 router.post('/login', function(req,res) {
     if(req.body.id == null) res.send('아이디를 입력해주세요');
-	Users.findOne({ id: req.body.id}, (err, user) => { //회원인지 확인
-		if (err) res.status(500).send('로그인 에러');
-		else if (user){ //회원일 경우
+   Users.findOne({ id: req.body.id}, (err, user) => { //회원인지 확인
+      if (err) res.status(500).send('로그인 에러');
+      else if (user){ //회원일 경우
             Users.findOne({ id: req.body.id, pw: req.body.pw }, (err,user)=>{
                 if(user){ //비밀번호가 올바를 경우
                     req.session.is_logined = true;
@@ -107,10 +107,10 @@ router.post('/login', function(req,res) {
                 }
             });
         } 
-		else { //아이디가 틀렸을 경우 또는 회원이 아닐 경우 로그인 실패 페이지로
+      else { //아이디가 틀렸을 경우 또는 회원이 아닐 경우 로그인 실패 페이지로
             res.redirect('/loginFail');
         }
-	});
+   });
 });
 
 //로그인 실패
@@ -227,7 +227,7 @@ passport.deserializeUser(function(req, user, done) {
     req.session._id = user._id.toString();
     req.session.userId = user.id;
     req.session.userName= user.name;
-	//console.log(req.session);
+   //console.log(req.session);
     done(null, user); 
 });
 
