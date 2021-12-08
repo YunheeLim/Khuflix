@@ -185,14 +185,14 @@ text-shadow: 0px 0px 1px #FFF;
 }
 .c2{
   position: absolute;
-  top: 67%;
+  top: 65%;
 }
 
 .no_history{
   position: relative;
   margin-left: 40%;
   margin-right:20%;
-  margin-top: 0%;
+  margin-top: 5%;
 }
 
 /* ------slide------ */
@@ -427,6 +427,7 @@ text-shadow: 0px 0px 1px #FFF;
   border: none;
   color: black;
   background-color: white; 
+  cursor: pointer;
 }
 
 .v_circle{
@@ -436,6 +437,7 @@ text-shadow: 0px 0px 1px #FFF;
   margin: 1px;
   border-color: rgba(255,255,255,0.5);
   background-color: #2A2A2A99;
+  cursor: pointer;
 }
 .m2{
   font-size: 15px;
@@ -553,6 +555,7 @@ input[id="tab03"]:checked ~ .con3 {display: block;}
   border-bottom: 1px solid #404040;
   margin: 0 auto;
   display: flex;
+  cursor: pointer;
 }
 .first_e{
   background-color: #333333;

@@ -1,6 +1,7 @@
 <link rel="stylesheet" href="/stylesheets/video/like_page_style.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap" rel="stylesheet">
 
 
@@ -36,3 +37,16 @@
             <p><%=like.title%></p>
         </div>
 <%});}%></div>
+
+<script>
+//브라우저의 뒤로가기 버튼 클릭 시, 페이지 reload
+        window.addEventListener( "pageshow", function ( event ) {
+            var historyTraversal = event.persisted || 
+                                    ( typeof window.performance != "undefined" && 
+                                        window.performance.navigation.type === 2 );
+            if ( historyTraversal ) {
+                window.location.reload();
+            }
+        });
+
+</script>
