@@ -11,13 +11,11 @@ const { session } = require('passport');
 var Users = model.Users; //사용자 객체 생성을 위한 오브젝트
 var Videos = model.Videos; //비디오 객체 생성을 위한 오브젝트
 //var remember_Id; 
-
 //첫페이지
 //first_page 렌더링
 router.get('/first', function(req, res){
     res.render('login/first_page');
 })
-
 // 첫페이지에서 아이디(이메일 주소) 데이터 저장
 router.post('/first', function(req, res){
     req.session.remember_Id = req.body.id;
@@ -26,7 +24,6 @@ router.post('/first', function(req, res){
         else res.redirect('/signup'); //회원이 아닐 경우 회원가입 페이지로
     });  
 });
-
 //메인페이지
 router.get('/main', function(req, res){
     if(req.session.is_logined==undefined || req.session.is_logined==false){//로그인 안하면 접근 못하도록 막기
@@ -41,7 +38,6 @@ router.get('/main', function(req, res){
                 get_all_videos(random_video);
             });
          });
-
         //동영상 모두 가져오기
          function get_all_videos(random_video){
             Videos.find({}, function(err, videos){ 
@@ -49,7 +45,6 @@ router.get('/main', function(req, res){
                 get_history(random_video, videos);
             });
          };
-
          // 사용자 이름과 시청기록 가져오기
          function get_history(random_video, videos){
             Users.findById(req.session._id, 'name history',(err,user)=>{
@@ -59,13 +54,11 @@ router.get('/main', function(req, res){
          };
     }
 });
-
 //회원가입
 //signup_page 렌더링
 router.get('/signup', function(req, res){
     res.render('login/signup_page', {remember_Id:req.session.remember_Id});
 });
-
 //아이디,비밀번호 데이터 저장
 router.post('/signup', function(req, res){
     var userId = req.body.id;
@@ -80,19 +73,17 @@ router.post('/signup', function(req, res){
         } 
     });
 });
-
 //일반 로그인
 //login_page 렌더링
 router.get('/login',function(req, res){
     res.render('login/login_page', {remember_Id:req.session.remember_Id}); //first_page에서 입력받은 id(email)를 login_page에 전달
 })
-
 //로그인 시 아이디, 비밀번호 데이터 받아서 일치하는지 체크
 router.post('/login', function(req,res) {
     if(req.body.id == null) res.send('아이디를 입력해주세요');
-   Users.findOne({ id: req.body.id}, (err, user) => { //회원인지 확인
-      if (err) res.status(500).send('로그인 에러');
-      else if (user){ //회원일 경우
+	Users.findOne({ id: req.body.id}, (err, user) => { //회원인지 확인
+		if (err) res.status(500).send('로그인 에러');
+		else if (user){ //회원일 경우
             Users.findOne({ id: req.body.id, pw: req.body.pw }, (err,user)=>{
                 if(user){ //비밀번호가 올바를 경우
                     req.session.is_logined = true;
@@ -107,18 +98,15 @@ router.post('/login', function(req,res) {
                 }
             });
         } 
-      else { //아이디가 틀렸을 경우 또는 회원이 아닐 경우 로그인 실패 페이지로
+		else { //아이디가 틀렸을 경우 또는 회원이 아닐 경우 로그인 실패 페이지로
             res.redirect('/loginFail');
         }
-   });
+	});
 });
-
 //로그인 실패
 router.get('/loginFail', function(req, res){
     res.render('login/login_fail_page');
 });
-
-
 //https://www.passportjs.org/ 참조하였습니다.
 //카카오 회원가입 및 로그인
 passport.use('kakao-login', new kakaoStrategy({ 
@@ -144,13 +132,11 @@ passport.use('kakao-login', new kakaoStrategy({
        }
    });
 }));
-
 router.get('/kakaoLogin', passport.authenticate('kakao-login')); 
 router.get('/auth/kakao/callback', passport.authenticate('kakao-login', {
     failureRedirect: '/login', // 회원가입이라면 다시 로그인페이지로
 }), (req, res) => { res.redirect('/main'); // 이미 회원이라면 메인페이지로
 });
-
 //네이버 회원가입 및 로그인
 passport.use('naver-login', new naverStrategy({ 
     clientID: config.naver.clientID, 
@@ -177,13 +163,11 @@ passport.use('naver-login', new naverStrategy({
        }
    });
 }));
-
 router.get('/naverLogin', passport.authenticate('naver-login')); 
 router.get('/auth/naver/callback', passport.authenticate('naver-login', {
     failureRedirect: '/login', 
 }), (req, res) => { res.redirect('/main'); 
 });
-
 //페이스북 회원가입 및 로그인
 passport.use('facebook-login', new facebookStrategy({ 
     clientID: config.facebook.clientID, 
@@ -207,30 +191,25 @@ passport.use('facebook-login', new facebookStrategy({
            });
        }
    });
-
 }));
-
 router.get('/facebookLogin', passport.authenticate('facebook-login')); 
 router.get('/auth/facebook/callback', passport.authenticate('facebook-login', {
     failureRedirect: '/login', 
 }), (req, res) => { res.redirect('/main'); 
 });
-
 //소셜로그인 세션 저장
 passport.serializeUser(function(user, done) { 
     done(null, user);
     //console.log(user);
 });
-
 passport.deserializeUser(function(req, user, done) { 
     req.session.is_logined = true;
     req.session._id = user._id.toString();
     req.session.userId = user.id;
     req.session.userName= user.name;
-   //console.log(req.session);
+	//console.log(req.session);
     done(null, user); 
 });
-
 //로그아웃
 router.get('/logout', function(req, res){
     if(req.session.is_logined){
@@ -244,7 +223,6 @@ router.get('/logout', function(req, res){
         res.status(404).send('로그인 해주세요');
     }
 });
-
 //회원탈퇴
 router.get('/remove', function(req, res){
     if(req.session.is_logined){
@@ -262,5 +240,4 @@ router.get('/remove', function(req, res){
         })
     }else res.send('로그인 해주세요');
 });
-
 module.exports = router;
