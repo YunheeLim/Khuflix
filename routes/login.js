@@ -129,7 +129,7 @@ passport.use('kakao-login', new kakaoStrategy({
     Users.findOne({ id : profile.id}, (err,user)=>{
        if(err) res.status(500).send('카카오 로그인 에러');
        else if(user) { //이미 회원일 경우
-            console.log('[카카오 로그인] ', user._doc);
+            console.log('[카카오 로그인] ', user);
             return done(null, user);
     }
        else{ //회원이 아닐 경우 데이터베이스에 저장
@@ -138,7 +138,7 @@ passport.use('kakao-login', new kakaoStrategy({
                name: profile.username
            });
            new_user.save((user)=>{
-                console.log('[카카오 회원가입] ', user._doc);
+                console.log('[카카오 회원가입] ', user);
                return done(null, user);
            });
        }
@@ -162,7 +162,7 @@ passport.use('naver-login', new naverStrategy({
     Users.findOne({ id : profile.emails[0].value}, (err,user)=>{
        if(err) res.status(500).send('네이버 로그인 에러');
        else if(user) {
-            console.log('[네이버 로그인] ', user._doc);
+            console.log('[네이버 로그인] ', user);
             return done(null, user);
         }
        else{
@@ -171,7 +171,7 @@ passport.use('naver-login', new naverStrategy({
                name: userName 
            });
            new_user.save((user)=>{
-                console.log('[네이버 회원가입] ', user._doc);
+                console.log('[네이버 회원가입] ', user);
                return done(null, user);
            });
        }
@@ -193,7 +193,7 @@ passport.use('facebook-login', new facebookStrategy({
     Users.findOne({ id : profile.id}, (err,user)=>{
        if(err) res.status(500).send('페이스북 로그인 에러');
        else if(user) {
-            console.log('[페이스북 로그인] ', user._doc)
+            console.log('[페이스북 로그인] ', user)
             return done(null, user);
         }
        else{
@@ -202,7 +202,7 @@ passport.use('facebook-login', new facebookStrategy({
                name: profile.displayName
            });
            new_user.save((user)=>{
-                console.log('[페이스북 회원가입] ', user._doc)
+                console.log('[페이스북 회원가입] ', user)
                return done(null, user);
            });
        }
