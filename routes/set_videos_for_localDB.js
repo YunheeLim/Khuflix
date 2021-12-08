@@ -17,7 +17,7 @@ router.get('/set_videos', function(req,res){
     ];
     Videos.insertMany(video_array,(err,docs)=>{
         if(err) throw err;
-        res.send(docs);
+        res.send('비디오 셋팅 완료');
     })
 });
 

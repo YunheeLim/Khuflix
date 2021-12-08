@@ -47,7 +47,7 @@
             <div class="watchedlist">
                 <ul>
                     <li>
-                        <a href="">
+                        <a href="/detail?title=<%=video.title%>">
                             <div class="screen">
                                 <img src="/images/thumb/<%=video.title%>_thumb.jpg">
                             </div>
@@ -73,7 +73,7 @@
                 <ul>
                     <% result_videos.forEach((video)=>{%>
                     <li>
-                        <a href="">
+                        <a href="/detail?title=<%=video.title%>">
                             <div class="screen">
                                 <img src="/images/thumb/<%=video.title%>_thumb.jpg" onmouseenter="zoomIn(event)" onmouseleave="zoomOut(event)">
                             </div>

@@ -64,14 +64,18 @@ router.post('/signup', function(req, res){
     var userId = req.body.id;
     var userName = userId.split('@')[0]; //이메일 앞부분을 사용자 이름으로 저장
     var userPw = req.body.pw;
-    var new_user = new Users({name:userName,id:userId,pw:userPw}); //새로운 회원 저장을 위한 객체생성
-    new_user.save(function(err){ //새로운 회원 데이터베이스에 저장
-        if(err) res.status(500).send('회원가입 에러: 이메일 칸을 채웠는지 확인해주세요');
+    if(userId == '' || userPw == '') res.send('빈칸을 입력해주세요'); //아이디나 비밀번호 입력 안했을 때
+    else{
+        var new_user = new Users({name:userName,id:userId,pw:userPw}); //새로운 회원 저장을 위한 객체생성
+        new_user.save(function(err){ //새로운 회원 데이터베이스에 저장
+        if(err) res.status(500).send('회원가입 에러');
         else {
             console.log('[회원가입] ', new_user._doc);
             res.redirect('/login');//회원가입 성공시 로그인페이지로
         } 
     });
+    }
+
 });
 //일반 로그인
 //login_page 렌더링
