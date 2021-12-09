@@ -307,7 +307,7 @@
                                 </div>
                                 <div class="blank"></div>
                             </div>
-                            <div class="epi" onclick="location.href='/streaming/슬기로운 의사생활/2'">
+                            <div class="epi" onclick="location.href='/streaming/슬기로운 의사생활/3'">
                                 <div class="e_number out_box"><div class="e_num in_box">3</div></div>
                                 <div class="thumbnail out_box"><div class="in_box"><img class="thumb" src="/images/thumb/슬기로운 의사생활3_thumb.jpg"></div></div>
                                 <div class="text">
@@ -320,7 +320,7 @@
                                 </div>
                                 <div class="blank"></div>
                             </div>
-                            <div class="epi" onclick="location.href='/streaming/슬기로운 의사생활/2'">
+                            <div class="epi" onclick="location.href='/streaming/슬기로운 의사생활/4'">
                                 <div class="e_number out_box"><div class="e_num in_box">4</div></div>
                                 <div class="thumbnail out_box"><div class="in_box"><img class="thumb" src="/images/thumb/슬기로운 의사생활4_thumb.jpg"></div></div>
                                 <div class="text">
@@ -333,7 +333,7 @@
                                 </div>
                                 <div class="blank"></div>
                             </div>
-                            <div class="epi" onclick="location.href='/streaming/슬기로운 의사생활/2'">
+                            <div class="epi" onclick="location.href='/streaming/슬기로운 의사생활/5'">
                                 <div class="e_number out_box"><div class="e_num in_box">5</div></div>
                                 <div class="thumbnail out_box"><div class="in_box"><img class="thumb" src="/images/thumb/슬기로운 의사생활5_thumb.jpg"></div></div>
                                 <div class="text">
@@ -434,9 +434,12 @@
                 window.location.reload();
             }
         });
+
+        
         const modal = document.querySelector('.modal');
         const preview = document.querySelector('.btn-open-popup');
 
+        
         const body = document.querySelector('body');
         const logout_modal = document.querySelector('.logout_modal');
         const exit_modal = document.querySelector('.exit_modal');
@@ -451,6 +454,7 @@
         var h2 = document.getElementsByTagName('h2')[0];
         var h22 = document.getElementsByTagName('h2')[1];
 
+        //계정용 모달 - 로그아웃 버튼 상호작용
         logoutBtn.addEventListener('click', () => {
             logout_modal.classList.toggle('show');
 
@@ -459,6 +463,7 @@
         }
       });
 
+      //계정용 모달 - 탈퇴버튼 상호작용
       exitBtn.addEventListener('click', () => {
         exit_modal.classList.toggle('show');
 
@@ -466,7 +471,8 @@
           body.style.overflow = 'hidden';
         }
       });
-
+      
+      //계정용 모달 - 로그아웃 모달 상호작용
       logout_modal.addEventListener('click', (event) => {
         if (event.target === logout_modal) {
             logout_modal.classList.toggle('show');
@@ -477,6 +483,7 @@
         }
       });
 
+      //계정용 모달 - 탈퇴 모달 상호작용
       exit_modal.addEventListener('click', (event) => {
         if (event.target === exit_modal) {
             exit_modal.classList.toggle('show');
@@ -487,6 +494,7 @@
         }
       });
 
+      //YES / NO 버튼 관련
       noBtn.addEventListener('click',(event)=>{
           location.href="/main";
       })
@@ -523,15 +531,15 @@
     }
 
 
-
-
-        preview.addEventListener('mouseover', () => {
+        //프리뷰 관련 모달 
+        preview.addEventListener('mousenter', () => {
             modal.style.display = 'block';
         });
         preview.addEventListener('mouseout', () => {
             modal.style.display = 'none';
         });
 
+        //모달 상호 작용 
         modal.addEventListener('mouseover', () => {
             modal.style.display = 'block';
         });
