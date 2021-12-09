@@ -81,8 +81,8 @@ npm insatll
 ```sh
 npm start
 ```
-동영상 데이터 셋팅을 위해 localhost:4000/set_videos 에 접속해주세요.<br>
-모든 준비가 완료 되었습니다. localhost:4000/first 로 접속하여 영상을 즐겨주세요.
+동영상 데이터 셋팅을 위해 <a href="localhost:4000/set_videos">localhost:4000/set_videos</a>에 접속해주세요.<br>
+모든 준비가 완료 되었습니다. <a href="localhost:4000/first">localhost:4000/first</a>로 접속하여 영상을 즐겨주세요.
 
 
 ## :grey_exclamation: Reference links
