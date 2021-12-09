@@ -18,3 +18,4 @@ module.exports={
         'callbackURL':'http://localhost:4000/auth/facebook/callback'
     }
 }
+
