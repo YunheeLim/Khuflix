@@ -21,8 +21,8 @@ router.post('/search', function(req, res){
         else if (video){ //정확히 찾는 동영상이 있을 경우
             res.render('video/search_page', {result:'true_for_title', video:video});
         }
-        else if(!video){ //제목으로 나오지 않을 경우 내용과 출연진으로 검색
-            Videos.find({$or: [{content: {$regex: keyword, $options: 'i'}}, {cast: {$regex: keyword, $options: 'i'}}]}, (err, videos)=>{
+        else if(!video){ //제목으로 나오지 않을 경우 내용과 출연진, 장르, 특징으로 검색
+            Videos.find({$or: [{content: {$regex: keyword, $options: 'i'}}, {cast: {$regex: keyword, $options: 'i'}}, {genre: {$regex: keyword, $options: 'i'}}, {feature: {$regex: keyword, $options: 'i'}}]}, (err, videos)=>{
                 if(videos.length != 0){
                    res.render('video/search_page', {result:'true_for_contents', result_videos:videos});
                 }else { //내용과 출연진 검색으로도 나오지 않을 경우
@@ -83,7 +83,7 @@ router.get('/streaming/:video_title/:episode', function(req, res){
         else if(!target_video) res.send('삭제된 동영상입니다.');
         else{
             if(target_video.type=='original'){
-                res.render('video/original_player_page',{title:title});
+                res.render('video/original_player_page',{title:title, episode:episode});
             }else if(target_video.type=='youtube'){
                 var epi_src = target_video.episode[episode-1].epi_src; //동영상 에피소드 유튜브링크 가져오기
                 res.render('video/youtube_player_page', {epi_src:epi_src});
