@@ -14,9 +14,43 @@
 3. Database : Mongo Atlas
 4. AWS : EC2
 
+## :point_down: Branch Name
+- aylee, shPark: Front-End
+- yhLim: Back-End
+
+## :scroll: DB Schema
+### Users collection
+```
+{
+    name: {type: String, required: false},
+    id: {type: String, required: true, unique: true},
+    pw: {type: String, required: false}, 
+    history:[{title:String, episode:Number}], 
+    like:[{title:String}] 
+}
+```
+### Vidoes collection
+```
+{
+    title: String,
+    src: String, 
+    content: String,
+    cast: String,
+    feature: String,
+    genre: String,
+    ost: [{song: String, singer: String, ost_src: String}],
+    episode: [{time: Number, epi_content: String, epi_src: String, epi_title: String}],
+    type: String, 
+    category: String 
+}
+```
+
 ## :banana: Prerequisit
 - node v16.X<br>
-- npm v8.x
+- npm v8.x<br>
+- <a href="https://www.mongodb.com/try/download/enterprise">Mongo DB v.5.0.3</a><br>
+- <a href="https://developers.kakao.com/console/app">카카오 로그인 API KEY발급</a>(필수 동의 항목: 닉네임)<br>
+- <a href="https://developers.naver.com/apps/#/register">네이버 로그인 API KEY발급</a>(필수 동의 항목: 회원이름, 이메일주소)
 
 ## :monkey: Required File
 위 저장소를 클론한 후 config/secret.js 파일의 빈칸을 채워주세요. 내용은 다음과 같습니다.
@@ -34,11 +68,6 @@ module.exports={
     'kakao':{
         'clientID': 'Yours',
         'callbackURL': 'http://localhost:4000/auth/kakao/callback'
-    },
-    'facebook':{
-        'clientID': 'Yours',
-        'clientSecret': 'Yours',
-        'callbackURL':'http://localhost:4000/auth/facebook/callback'
     }
 }
 ```
@@ -52,8 +81,8 @@ npm insatll
 ```sh
 npm start
 ```
-동영상 데이터 셋팅을 위해 localhost:4000/set_videos 에 접속해주세요.<br>
-모든 준비가 완료 되었습니다. localhost:4000/first 로 접속하여 영상을 즐겨주세요.
+동영상 데이터 셋팅을 위해 <a href="http://localhost:4000/set_videos">localhost:4000/set_videos</a>에 접속해주세요.<br>
+모든 준비가 완료 되었습니다. <a href="http://localhost:4000/first">localhost:4000/first</a>로 접속하여 영상을 즐겨주세요.
 
 
 ## :grey_exclamation: Reference links
