@@ -16,14 +16,17 @@ router.post('/search', function(req, res){
     console.log('keyword:' + keyword);
     if(keyword =='') res.render('video/search_page', {result:false}); //검색어 없이 검색했을 경우
     else{
-    Videos.findOne({title:keyword}, (err, video)=>{
+    Videos.find({title: {$regex: keyword, $options: 'ix'}}, (err, videos)=>{//제목검색
         if (err) res.status(500).send('검색 에러');
-        else if (video){ //정확히 찾는 동영상이 있을 경우
-            res.render('video/search_page', {result:'true_for_title', video:video});
+        if(videos.length != 0){
+            //console.log('[title]', videos)
+            result = true;
+            res.render('video/search_page', {result:'true_for_title', result_videos:videos});
         }
-        else if(!video){ //제목으로 나오지 않을 경우 내용과 출연진, 장르, 특징으로 검색
-            Videos.find({$or: [{content: {$regex: keyword, $options: 'i'}}, {cast: {$regex: keyword, $options: 'i'}}, {genre: {$regex: keyword, $options: 'i'}}, {feature: {$regex: keyword, $options: 'i'}}]}, (err, videos)=>{
+        else if(videos.length == 0){ //제목으로 나오지 않을 경우 내용과 출연진, 장르, 특징으로 검색
+            Videos.find({$or: [{content: {$regex: keyword, $options: 'ix'}}, {cast: {$regex: keyword, $options: 'ix'}}, {genre: {$regex: keyword, $options: 'ix'}}, {feature: {$regex: keyword, $options: 'ix'}}]}, (err, videos)=>{
                 if(videos.length != 0){
+                    //console.log('contents')
                    res.render('video/search_page', {result:'true_for_contents', result_videos:videos});
                 }else { //내용과 출연진 검색으로도 나오지 않을 경우
                     result = false;

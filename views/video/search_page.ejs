@@ -37,15 +37,9 @@
     </header>
     <div class="wrap">
         <%if(result =='true_for_title'){%> <!--제목으로 검색-->
-            <!-- 1안 -->
-            <!-- <div class="results_display">
-                <img class="results" src="/images/thumb/<%=video.title%>_thumb.jpg" onclick="location.href='/detail?title=<%=video.title%>'">
-                <p><%=video.title%></p>
-            </div> -->
-
-            <!-- 2안(list ver.) -->
             <div class="watchedlist">
                 <ul>
+                    <% result_videos.forEach((video)=>{%>
                     <li>
                         <a href="/detail?title=<%=video.title%>">
                             <div class="screen">
@@ -56,19 +50,11 @@
                             </div>
                         </a>
                     </li>
+                    <%});%>
                 </ul>
             </div>
 
         <%}else if(result=='true_for_contents'){%> <!--내용으로 검색-->
-            <!-- 1안 -->
-            <!-- <div class="results_display">
-            <% result_videos.forEach((video)=>{%> 
-                <img class="results" src="/images/thumb/<%=video.title%>_thumb.jpg" onclick="location.href='/detail?title=<%=video.title%>'">
-                <p><%=video.title%></p>
-            <%});%>
-            </div> -->
-    
-            <!-- 2안(list ver.) -->
             <div class="watchedlist">
                 <ul>
                     <% result_videos.forEach((video)=>{%>
