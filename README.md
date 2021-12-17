@@ -48,26 +48,32 @@
 ## :banana: Prerequisit
 - node v16.X<br>
 - npm v8.x<br>
-- <a href="https://www.mongodb.com/try/download/enterprise">Mongo DB v.5.0.3</a><br>
+- <a href="https://www.mongodb.com/try/download/enterprise">Mongo DB v5.X</a><br>
 - <a href="https://developers.kakao.com/console/app">카카오 로그인 API KEY발급</a>(필수 동의 항목: 닉네임)<br>
-- <a href="https://developers.naver.com/apps/#/register">네이버 로그인 API KEY발급</a>(필수 동의 항목: 회원이름, 이메일주소)
+- <a href="https://developers.naver.com/apps/#/register">네이버 로그인 API KEY발급</a>(필수 동의 항목: 회원이름, 이메일주소)<br>
+- <a href="https://developers.facebook.com/docs/facebook-login/">페이스북 로그인 API KEY발급</a>
 
 ## :monkey: Required File
 위 저장소를 클론한 후 config/secret.js 파일의 빈칸을 채워주세요. 내용은 다음과 같습니다.
 ```
 module.exports={
     'mongoDB':{
-        'password':'로컬DB 사용 시 안 채워도 됩니다.',
-        'local_URL':'mongodb://localhost:27017/yourDBname'
+        'password':"***you don't need to fill this out when using local DB***",
+        'local_URL':'mongodb://localhost:27017/***yourDBname***'
     },
     'naver':{
-        'clientID':'Yours',
-        'clientSecret':'Yours',
+        'clientID':'***yours***',
+        'clientSecret':'***yours***',
         'callbackURL':'http://localhost:4000/auth/naver/callback'
     },
     'kakao':{
-        'clientID': 'Yours',
+        'clientID': '***yours***',
         'callbackURL': 'http://localhost:4000/auth/kakao/callback'
+    },
+    'facebook':{
+        'clientID': '***yours***',
+        'clientSecret': '***yours***',
+        'callbackURL':'http://localhost:4000/auth/facebook/callback'
     }
 }
 ```
