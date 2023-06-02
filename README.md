@@ -1,9 +1,9 @@
 # KhuFlix using AWS, Node js
 > 경희대학교 컴퓨터공학과 이아영 박선하 임윤희
 
-![image1](https://github.com/YunheeLim/Khuflix/assets/92131041/2bb3d3a7-98dc-4646-9cd4-bb96b8af2001)
-![image2](https://github.com/YunheeLim/Khuflix/assets/92131041/0975c5f6-6fc1-4c6d-8f9c-80a92a78f3b9)
-![image3](https://github.com/YunheeLim/Khuflix/assets/92131041/b6acc489-f8fc-4373-b3c7-9b4d2231c0ae)
+![image1](https://github.com/YunheeLim/Khuflix/assets/92131041/1c87628d-b56b-458f-ab6c-f43d3e7d3d35)
+![image2](https://github.com/YunheeLim/Khuflix/assets/92131041/22243e1d-7267-4811-b9f5-f6c0e12f6ec7)
+![image3](https://github.com/YunheeLim/Khuflix/assets/92131041/fd0c4ea4-4f9c-41a1-941d-cc5dd608cec4)
 
 
 ## :heart: KhuFlix
